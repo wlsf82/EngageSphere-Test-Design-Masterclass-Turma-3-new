@@ -5,8 +5,10 @@ describe('Validate the GUI', () => {
       url: 'http://localhost:3001/customers?**',
     }).as('getCustomers');
     cy.visit("http://localhost:3000/")
+
     cy.wait("@getCustomers")
   })
+
   it('Keep filters when returning from the customer details view', () => {
     cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.get('[data-testid="size-filter"]').select('Medium').should('have.value', 'Medium')
@@ -18,6 +20,7 @@ describe('Validate the GUI', () => {
     cy.get('[data-testid="size-filter"]').select('Medium').should('be.visible')
     cy.get('table.Table_container__I-Qpa tbody tr').should('have.length', 4);
   })
+
   it('Back to clients list', () => {
     cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.get('[aria-label="View company: Lowe Co"]').click()
@@ -25,6 +28,7 @@ describe('Validate the GUI', () => {
     cy.contains("Back").click()
     cy.contains("Hi there!").should('be.visible')
   })
+
   it('Check footer texts and links', () => {
     cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.contains('Hotmart')
@@ -40,11 +44,13 @@ describe('Validate the GUI', () => {
       .should('have.attr', 'href')
       .and('eq', 'https://youtube.com/@talkingabouttesting');
   })
+
   it('Check welcome message', () => {
     cy.contains("Hi there!").should('be.visible')
     cy.get('[data-testid="name"]').type('Cicero Henrique')
     cy.contains("Hi Cicero Henrique!").should('be.visible')
   })
+
   it('Header should have title, theme modifier and input', () => {
     it('should contain an h1 and an input element', () => {
       cy.get('.Header_container__2fKL4').then(($header) => {
@@ -54,12 +60,14 @@ describe('Validate the GUI', () => {
       });
     });
   })
+
   it('Open and close the messenger', () => {
     cy.get('[aria-label="Open messenger"]').should('be.visible')
     cy.get('[aria-label="Open messenger"]').click()
     cy.get('[aria-label="Close messenger"]').should('be.visible')
     cy.get('[aria-label="Close messenger"]').click()
   })
+
   it('Show and hid alert of sent message', () => {
     cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.get('[aria-label="Open messenger"]').should('be.visible')
@@ -69,6 +77,7 @@ describe('Validate the GUI', () => {
     cy.contains('Your message has been sent.').should('be.visible')
     cy.contains('Your message has been sent.').should('not.exist')
   })
+
   it('Clear and close message form', () => {
     cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.get('[aria-label="Open messenger"]').should('be.visible')
@@ -81,4 +90,5 @@ describe('Validate the GUI', () => {
     cy.get('#email').should('have.value', '');
     cy.get('#message').should('have.value', '');
   })
+
 })
