@@ -16,6 +16,24 @@ To run this project, you will need:
 
 **Note:** When installing Node.js, npm is automatically installed too.
 
+## How to run Cypress tests
+
+To run cypress tests, you will need to start:
+- backend & frontend running locally
+```
+cd backend && npm start
+cd frontend && npm start
+```
+- cypress tests
+```
+npx cypress open
+
+or
+
+headless mode
+npx cypress run
+```
+
 ## Installing and starting the servers
 
 Read the following [doc](./docs/TestEnvironment.md) to install and start the backend and frontend servers.
