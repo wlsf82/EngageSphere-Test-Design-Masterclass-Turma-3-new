@@ -4,25 +4,22 @@ describe('Validate the GUI', () => {
       method: 'GET',
       url: 'http://localhost:3001/customers?**',
     }).as('getCustomers');
-    cy.visit("http://localhost:3000/")
-
-    cy.wait("@getCustomers")
+    cy.openEngageSphere()
+    cy.visit('/')
   })
 
   it('Keep filters when returning from the customer details view', () => {
-    cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.get('[data-testid="size-filter"]').select('Medium').should('have.value', 'Medium')
     cy.get('[data-testid="industry-filter"]').select('Retail').should('have.value', 'Retail')
-    cy.get('table.Table_container__I-Qpa tbody tr').should('have.length', 4);
+    cy.get('table.Table_container__I-Qpa tbody tr').should('have.length', 2);
     cy.get('[aria-label="View company: Kilback Co"]').click()
     cy.contains("Company ID").should('be.visible')
     cy.contains("Back").click()
     cy.get('[data-testid="size-filter"]').select('Medium').should('be.visible')
-    cy.get('table.Table_container__I-Qpa tbody tr').should('have.length', 4);
+    cy.get('table.Table_container__I-Qpa tbody tr').should('have.length', 2);
   })
 
   it('Back to clients list', () => {
-    cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.get('[aria-label="View company: Lowe Co"]').click()
     cy.contains("Lowe Co").should('be.visible')
     cy.contains("Back").click()
@@ -30,7 +27,6 @@ describe('Validate the GUI', () => {
   })
 
   it('Check footer texts and links', () => {
-    cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.contains('Hotmart')
       .should('have.attr', 'href')
       .and('include', 'https://hotmart.com/');
@@ -69,7 +65,6 @@ describe('Validate the GUI', () => {
   })
 
   it('Show and hid alert of sent message', () => {
-    cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.get('[aria-label="Open messenger"]').should('be.visible')
     cy.get('[aria-label="Open messenger"]').click()
     cy.sendMessage()
@@ -79,7 +74,6 @@ describe('Validate the GUI', () => {
   })
 
   it('Clear and close message form', () => {
-    cy.get('.Button_secondaryButton__Qvwsy').click()
     cy.get('[aria-label="Open messenger"]').should('be.visible')
     cy.get('[aria-label="Open messenger"]').click()
     cy.sendMessage()
