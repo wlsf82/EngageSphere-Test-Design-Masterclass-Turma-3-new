@@ -2,8 +2,14 @@
 
 describe('',() => {
     context('Request all customers', () => {
-        it('Check return for all customers', () => {
-
+        beforeEach('Get request', () => {
+            cy.request().as('customers')
+        })
+        it('Check status code return for all customers', () => {
+            expect($this.customers.status).to.eq(200)
+        })
+        it('Check length for return with all customers', () => {
+            expect($this.customers.length).to.length(50)
         })
     })
     context('Request all customers with pagination', () => {
@@ -12,31 +18,34 @@ describe('',() => {
         })
     })
 
-        it('', () => {
+    it('Filter to customers with inside limit', () => {
 
-        })
-        it('', () => {
+    })
+    it('Filter to customers with industry', () => {
 
-        })
-        it('', () => {
+    })
+    it('Filter to customer with size', () => {
 
-        })
-        it('', () => {
+    })
+    it('Check message for invalid request', () => {
 
-        })
-        it('', () => {
+    })
+    it('Check message for invalid page', () => {
 
-        })
-        it('', () => {
+    })
+    it('Check message for invalid limit', () => {
 
-        })
-        it('', () => {
+    })
+    it('Check message for invalid page with insert string', () => {
 
-        })
-        it('', () => {
+    })
+    it('Check message for invalid limit with insert boolean', () => {
 
-        })
-        it('', () => {
+    })
+    it('Check message for invalid size', () => {
 
-        })
+    })
+    it('Check message for invalida industry', () => {
+
+    })
 })
