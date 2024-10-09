@@ -59,7 +59,7 @@ describe('Basic', () => {
     cy.get('#email').should('have.attr', 'required')
     cy.get('#message').should('have.attr', 'required')
   })
-  it('shows and hides a success message when successfully submitting the messengerform', () => {
+  it('shows and hides a success message when successfully submitting the messenger form', () => {
     cy.get('[aria-label*="messenger"]').click()
     cy.get('#messenger-name').type('Eduardo')
     cy.get('#email').type('eduardo@example.com')
@@ -81,7 +81,7 @@ describe('Basic', () => {
   })
   context('Mobile Viewport', { viewportWidth: 468 }, () => {
     it(
-      'shows the Company name and Action columns and hides the ID, Industry, Number of Employees, and Size columns in a mobile viewport',
+      'shows the Company name and Action columns and hides the ID, Industry, Number of Employees, and Size columns',
       () => {
         cy.contains('th', 'ID').should('not.be.visible')
         cy.contains('th', 'Company name').should('be.visible')
