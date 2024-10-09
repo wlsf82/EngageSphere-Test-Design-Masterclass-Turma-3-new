@@ -24,6 +24,19 @@ Read the following [doc](./docs/TestEnvironment.md) to install and start the bac
 
 Read the following [doc](./docs/TestCases.md) to get a list of test cases.
 
+To execute the tests on the first time you need to access the directory `tests` and install Cypress.
+
+```bash
+cd tests/
+npm install cypress
+```
+
+When the installation was completed you can execute the tests using the following commands:
+
+```bash
+npx cypress run
+```
+
 ___
 
 Made with ❤️ by [Walmyr](https://walmyr.dev).
