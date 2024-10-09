@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('sendMessage', (locator) => {
+Cypress.Commands.add('writeMessage', (locator) => {
     cy.get('#messenger-name').type('test');
     cy.get('#email').type('test@test.com');
     cy.get('#message').type('Message test');
