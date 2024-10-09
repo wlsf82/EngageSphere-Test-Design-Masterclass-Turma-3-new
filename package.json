@@ -38,6 +38,7 @@
     "@cypress/grep": "^4.1.0",
     "@cypress/skip-test": "^2.6.1",
     "cross-env": "^7.0.3",
+    "cypress-each": "^1.14.0",
     "dotenv": "^16.4.5"
   }
 }

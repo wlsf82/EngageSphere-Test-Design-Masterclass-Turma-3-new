@@ -1,20 +1,30 @@
 /// <reference types="cypress" />
 
+
+
 describe('',() => {
     context('Request all customers', () => {
         beforeEach('Get request', () => {
-            cy.request().as('customers')
+            cy.request(Cypress.env('baseUrl')).as('customers')
         })
         it('Check status code return for all customers', () => {
-            expect($this.customers.status).to.eq(200)
+            cy.get('@customers').then((response) =>{
+                expect(response.status).to.eq(200)
+            })
         })
         it('Check length for return with all customers', () => {
-            expect($this.customers.length).to.length(50)
+            cy.get('@customers').then((response) =>{
+                expect(response.body.customers).to.length(10)
+            })
         })
     })
     context('Request all customers with pagination', () => {
-        it('Check pagination with all customers', () => {
-
+        const pagination = [1,2,3,4,5,6,7]
+        it.each(pagination)('Check pagination with all customers', (page) => {
+            cy.request(`${Cypress.env('baseUrl')}?page=${page}`).should((response) => {
+                expect(response.status).to.eq(200)
+                expect(response.body.pageInfo.currentPage).to.eq(page)
+            })
         })
     })
 
