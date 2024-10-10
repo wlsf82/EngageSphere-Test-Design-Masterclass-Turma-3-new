@@ -35,4 +35,22 @@ describe('Customers', () => {
     })
   });
 
+  describe('Messenger Form', () => {
+    beforeEach(() => {
+      cy.setCookie('cookieConsent', 'accepted');     
+      cy.visit('/');
+    });
+    
+    it('It shows and hides a success message when successfully submitting the messenger form', () => {
+      const messengerData = {
+        name: 'Matheus',
+        email: 'matheus@gmail.com',
+        message: 'Hello, I need help with something.',
+      };
+      cy.gui_submitMessenger(messengerData);
+
+      cy.get('[class^="Messenger_success"]').should('be.visible').and('have.text', 'Your message has been sent.');
+      cy.get('[class^="Messenger_success"]').should('not.exist');
+    });
+  });
 });
