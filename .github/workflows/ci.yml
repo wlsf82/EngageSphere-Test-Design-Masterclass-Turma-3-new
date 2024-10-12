@@ -7,24 +7,25 @@ on:
       - main
 
 jobs:
-  start-app:
+  eslint:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
     - name: Install modules
       run: npm install
+    - name: Run ESLint
+      run: npm run lint
+
+  start-app:
+    needs: eslint
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
     - name: Start Backend
       run: npm run start:server
     - name: Start Frontend
       run: npm run start:frontend
-
-  eslint:
-    needs: start-app
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v4
-    - name: Run ESLint
-      run: npm run lint
 
   cypress:
     needs: eslint

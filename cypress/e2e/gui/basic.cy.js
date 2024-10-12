@@ -1,7 +1,9 @@
 describe('Basic', () => {
   beforeEach(() => {
+    Cypress.on('window:before:load', window => {
+      window.document.cookie = 'cookieConsent=accepted'
+    })
     cy.visit('/')
-    cy.contains('button', 'Accept').should('be.visible').click() // Find a better way to handle coockies
   })
 
   it('keeps the filters when coming back from the customer details view', () => {
