@@ -16,8 +16,19 @@ jobs:
     - name: Run ESLint
       run: npm run lint
 
-  cypress:
+  start-app:
     needs: eslint
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Start Backend
+      run: npm run start:server
+    - name: Start Frontend
+      run: npm run start:frontend
+
+  cypress:
+    needs: start-app
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
