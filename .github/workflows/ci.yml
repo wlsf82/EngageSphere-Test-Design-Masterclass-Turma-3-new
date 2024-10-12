@@ -19,6 +19,7 @@ jobs:
       run: npm run start:frontend
 
   eslint:
+    needs: start-app
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
