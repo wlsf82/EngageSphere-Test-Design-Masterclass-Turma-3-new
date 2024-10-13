@@ -24,17 +24,66 @@ Read the following [doc](./docs/TestEnvironment.md) to install and start the bac
 
 Read the following [doc](./docs/TestCases.md) to get a list of test cases.
 
-To execute the tests on the first time you need to access the directory `tests` and install Cypress.
+To execute the tests on the first time you need install the dev dependencies:
 
 ```bash
-cd tests/
-npm install cypress
+npm install
 ```
 
 When the installation was completed you can execute the tests using the following commands:
 
 ```bash
-npx cypress run
+npm run test
+```
+
+### Custom Commands
+
+This repository includes custom commands to facilitate running tests in different scenarios:
+
+### Open Cypress Launchpad Command
+
+To open Cypress Launchpad with the default configuration:
+
+``` bash
+npm run cy:open
+```
+
+### Open Cypress Launchpad in Mobile Size
+
+To simulate a mobile environment when opening Cypress Launchpad:
+
+``` bash
+npm run cy:open:mobile
+```
+
+### Run Tests in Specific Browsers
+
+To run tests in specific browsers, use the commands below. Ensure that the desired browser is installed on your machine.
+
+**Chrome**:
+
+``` bash
+npm run test:chrome
+```
+
+**Electron**:
+
+``` bash
+npm run test:electron
+```
+
+**Firefox**:
+
+``` bash
+npm run test:firefox
+```
+
+### Run Tests Simulating Mobile Screens
+
+To run tests simulating a mobile environment:
+
+``` bash
+npm run test:mobile
 ```
 
 ___
