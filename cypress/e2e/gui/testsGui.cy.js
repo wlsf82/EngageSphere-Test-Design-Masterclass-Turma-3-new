@@ -1,11 +1,13 @@
 describe('Validate the GUI', () => {
   beforeEach(() => {
+    const BASE_URL = `${Cypress.env('BASE_URL')}`
+    const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
     cy.intercept({
       method: 'GET',
-      url: 'http://localhost:3001/customers?**',
+      url: `${CUSTOMERS_API_URL}?**`,
     }).as('getCustomers');
     cy.openEngageSphere()
-    cy.visit('/')
+    cy.visit(BASE_URL)
   })
 
   it('Keep filters when returning from the customer details view', () => {

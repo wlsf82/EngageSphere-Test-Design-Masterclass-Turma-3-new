@@ -6,8 +6,9 @@ Cypress.Commands.add('writeMessage', (locator) => {
 })
 
 Cypress.Commands.add('openEngageSphere', () => {
+  const BASE_URL = `${Cypress.env('BASE_URL')}`
   cy.session([], () => {
-    cy.visit('/');
+    cy.visit(BASE_URL);
     cy.contains('button', 'Accept').click()
     cy.get('.CookieConsent_content__y4iEy').should('not.exist')
   });
