@@ -110,5 +110,4 @@ describe('Validate the GUI', () => {
     cy.get('#email').should('have.value', '');
     cy.get('#message').should('have.value', '');
   })
-
 })
