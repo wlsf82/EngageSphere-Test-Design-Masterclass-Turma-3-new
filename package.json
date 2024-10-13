@@ -6,7 +6,14 @@
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && npm start",
-    "start:server": "cd backend && npm start"
+    "start:server": "cd backend && npm start",
+    "cy:open": "cypress open",
+    "cy:open:mobile": "cypress open --config viewportWidth=410 viewportHeight=860",
+    "test": "cypress run",
+    "test:chrome": "cypress run -b chrome",
+    "test:electron": "cypress run -b electron",
+    "test:firefox": "cypress run -b firefox",
+    "test:mobile": "cypress run --config viewportWidth=410 viewportHeight=860"
   },
   "repository": {
     "type": "git",
@@ -17,7 +24,8 @@
   "license": "MIT",
   "homepage": "https://github.com/wlsf82/EngageSphere-Test-Design-Masterclass-Turma-3/blob/main/README.md",
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "cypress": "^13.15.0"
   },
   "browserslist": {
     "production": [
