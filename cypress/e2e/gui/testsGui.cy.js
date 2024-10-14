@@ -10,24 +10,22 @@ describe('Validate the GUI', () => {
     cy.visit(BASE_URL)
   })
 
-  it('Keep filters when returning from the customer details view', () => {
+  it('Apply a filter, go to a customer page, return to the list page, and check if the previous filters are selected', () => {
     // Filter the companies
-    cy.clock()
-    cy.get('[data-testid="size-filter"]').select('Medium').should('have.value', 'Medium')
-    cy.get('[data-testid="industry-filter"]').select('Retail').should('have.value', 'Retail')
-    cy.tick(10000)
+    cy.get('[data-testid="size-filter"]').select('Medium')
+    cy.get('[data-testid="industry-filter"]').select('Retail')
+    cy.wait('@getCustomers')
     // Get on API the amount of retails
     cy.getMediumRetailsAmount().then((totalCustomers) => {
-      // Check the table lenght
-      cy.get('table.Table_container__I-Qpa tbody tr').should('have.length', totalCustomers);
       // Open the details page
       cy.get('[aria-label="View company: Kilback Co"]').click()
       cy.contains("Company ID").should('be.visible')
       // Back to companies list
       cy.contains("Back").click()
-      cy.get('[data-testid="size-filter"]').select('Medium').should('be.visible')
+      cy.get('[data-testid="size-filter"]').should('have.value', 'Medium')
+      cy.get('[data-testid="industry-filter"]').should('have.value', 'Retail')
       // Check the table lenght
-      cy.get('table.Table_container__I-Qpa tbody tr').should('have.length', totalCustomers);
+      cy.get('[data-testid="table"] tbody tr').should('have.length', totalCustomers);
     });
   })
 
