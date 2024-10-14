@@ -11,7 +11,7 @@
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && npm start",
     "start:server": "cd backend && npm start",
-    "test:api": "cypress run --spec 'cypress/e2e/api.cy.js'",
+    "test:api": "cypress run --spec 'cypress/e2e/api.cy.js' --config baseUrl=http://localhost:3001",
     "test:gui": "cypress run --spec 'cypress/e2e/gui/**.cy.js'"
   },
   "repository": {

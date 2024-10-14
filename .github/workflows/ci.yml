@@ -30,7 +30,7 @@ jobs:
       - name: Run API tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm run start:server
+          start: npm run start:server & wait-on http://localhost:3001
           command: npm run test:api
 
   gui-tests:
@@ -39,7 +39,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install backend modules
+      - name: Install frontend modules
         uses: cypress-io/github-action@v6
         with:
           install-command: npm run install:frontend
@@ -47,5 +47,5 @@ jobs:
       - name: Run GUI tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm run start:frontend
+          start: npm run start:frontend & wait-on http://localhost:3000
           command: npm run test:gui
