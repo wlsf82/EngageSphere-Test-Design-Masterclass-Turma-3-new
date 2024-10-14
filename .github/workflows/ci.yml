@@ -16,24 +16,36 @@ jobs:
     - name: Run ESLint
       run: npm run lint
 
-  start-app:
+  api-tests:
     needs: eslint
-    runs-on: ubuntu-22.04
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Start Backend
-      run: npm run start:server
-    - name: Start Frontend
-      run: npm run start:frontend
-
-  cypress:
-    needs: start-app
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Run end-to-end tests
+      - name: Install backend modules
         uses: cypress-io/github-action@v6
         with:
-          command: npm run test
+          install-command: npm run install:backend
+          runTests: false
+      - name: Run API tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run start:server
+          command: npm run test:api
+
+  gui-tests:
+    needs: eslint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install backend modules
+        uses: cypress-io/github-action@v6
+        with:
+          install-command: npm run install:frontend
+          runTests: false
+      - name: Run GUI tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run start:frontend
+          command: npm run test:gui
