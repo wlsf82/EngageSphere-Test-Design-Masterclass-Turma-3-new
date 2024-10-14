@@ -33,16 +33,16 @@ describe('EngageSphere GUI Tests', () => {
 
   context('Customer View', () => {
     it('keeps the filters when coming back from the customer details view', () => {
-      cy.get('[data-testid="size-filter"]').select('Small')
-      cy.get('[data-testid="industry-filter"]').select('Finance')
+      cy.get('[data-testid="size-filter"]').select('Very Large Enterprise')
+      cy.get('[data-testid="industry-filter"]').select('Technology')
       cy.contains('button', 'View').click()
       cy.contains('h2', 'Customer Details').should('be.visible')
 
       cy.contains('button', 'Back').click()
 
       cy.contains('h1', 'EngageSphere').should('be.visible')
-      cy.get('[data-testid="size-filter"]').should('have.value', 'Small')
-      cy.get('[data-testid="industry-filter"]').should('have.value', 'Finance')
+      cy.get('[data-testid="size-filter"]').should('have.value', 'Very Large Enterprise')
+      cy.get('[data-testid="industry-filter"]').should('have.value', 'Technology')
     })
 
     it('goes back to the customers list when clicking the "Back" button', () => {
