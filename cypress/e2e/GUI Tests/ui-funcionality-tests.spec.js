@@ -1,5 +1,4 @@
 describe('GUI Tests', () => {
-
   beforeEach(() => {
     Cypress.on('window:before:load', window => {
       window.document.cookie = 'cookieConsent=accepted'
