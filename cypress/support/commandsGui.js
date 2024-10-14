@@ -5,7 +5,7 @@ Cypress.Commands.add('writeMessage', (locator) => {
   cy.get('#message').type('Message test');
 })
 
-Cypress.Commands.add('openEngageSphere', () => {
+Cypress.Commands.add('visitPageAndAcceptCookies', () => {
   const BASE_URL = `${Cypress.env('BASE_URL')}`
   cy.session([], () => {
     cy.visit(BASE_URL);

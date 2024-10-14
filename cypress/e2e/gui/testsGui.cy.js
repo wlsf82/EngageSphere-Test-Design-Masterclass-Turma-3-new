@@ -6,7 +6,7 @@ describe('Validate the GUI', () => {
       method: 'GET',
       url: `${CUSTOMERS_API_URL}?**`,
     }).as('getCustomers');
-    cy.openEngageSphere()
+    cy.visitPageAndAcceptCookies()
     cy.visit(BASE_URL)
   })
 
