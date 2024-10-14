@@ -1,10 +1,10 @@
 describe('GUI Tests', () => {
 
   beforeEach(() => {
-    cy.visit('/customers');
-    cy.contains('button', 'Accept').click();
-    cy.clearCookies();
-    cy.clearLocalStorage();
+    Cypress.on('window:before:load', window => {
+      window.document.cookie = 'cookieConsent=accepted'
+    })
+    cy.visit('/');
   });
 
   const selectCompanySize = (size) => {
