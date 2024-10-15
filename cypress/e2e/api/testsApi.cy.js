@@ -123,4 +123,16 @@ describe('Validate the API requests', () => {
       expect(response.body).to.have.property('error', 'Invalid page or limit. Both must be positive numbers.')
     })
   })
+
+  it('Request an invalid company size', () => {
+    cy.request({
+      method: 'GET',
+      url: `${CUSTOMERS_API_URL}?page=1&limit=10&size=Cicero&industry=All`,
+      failOnStatusCode: false
+    }).then(response => {
+
+      expect(response.status).to.equal(400);
+      expect(response.body).to.have.property('error', 'Unsupported size value. Supported values are All, Small, Medium, Enterprise, Large Enterprise, and Very Large Enterprise.')
+    })
+  })
 })
