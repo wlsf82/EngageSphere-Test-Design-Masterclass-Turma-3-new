@@ -62,4 +62,18 @@ describe('Validate the API requests', () => {
       expect(allCompaniesHaveLessThan100Employees).to.be.true;
     })
   })
+
+  it('Filters logistics companies', () => {
+    cy.request({
+      method: 'GET',
+      url: `${CUSTOMERS_API_URL}?page=1&limit=10&industry=Logistics`,
+    }).then(response => {
+
+      expect(response.status).to.equal(200);
+      // Check if all returned companies are in the logistics industry
+      const allCompaniesAreLogistics = response.body.customers.every(customer => customer.industry === "Logistics");
+      expect(allCompaniesAreLogistics).to.be.true;
+    })
+  })
+
 })
