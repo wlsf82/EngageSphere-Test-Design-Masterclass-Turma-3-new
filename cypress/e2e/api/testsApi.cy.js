@@ -135,4 +135,16 @@ describe('Validate the API requests', () => {
       expect(response.body).to.have.property('error', 'Unsupported size value. Supported values are All, Small, Medium, Enterprise, Large Enterprise, and Very Large Enterprise.')
     })
   })
+
+  it('Request an invalid company industry', () => {
+    cy.request({
+      method: 'GET',
+      url: `${CUSTOMERS_API_URL}?page=1&limit=10&size=All&industry=Cicero`,
+      failOnStatusCode: false
+    }).then(response => {
+
+      expect(response.status).to.equal(400);
+      expect(response.body).to.have.property('error', 'Unsupported industry value. Supported values are All, Logistics, Retail, Technology, HR, and Finance.')
+    })
+  })
 })
