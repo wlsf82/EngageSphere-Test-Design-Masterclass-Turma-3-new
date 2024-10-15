@@ -21,7 +21,7 @@ describe('GUI Tests', () => {
       .should('have.value', 'Small');
   });
 
-  it.only('Should return to the customer list after clicking back', () => {
+  it('Should return to the customer list after clicking back', () => {
     cy.get('button[aria-label^="View company:"]')
       .first()
       .click();
@@ -33,25 +33,21 @@ describe('GUI Tests', () => {
     cy.get('[data-testid="table"]').should('be.visible')
   });
 
-  //não consegui pensar em uma maneira simples de fazer esse cara, queria verificar se cada link estava mandando pro lugar correto tbm
-  it('Should display the footer with the correct text and links', () => {
-    cy.get('footer')
-      .should('be.visible')
-      .contains('Copyright 2024 - Talking About Testing');
-  
-    const links = [
-      { text: 'Hotmart', href: 'https://hotmart.com/pt-br/club/cypress-playground-ate-a-nuvem' },
-      { text: 'Udemy', href: 'https://udemy.com/user/walmyr' },
-      { text: 'Blog', href: 'https://talkingabouttesting.com' },
-      { text: 'YouTube', href: 'https://youtube.com/@talkingabouttesting' }
-    ];
-
-    cy.get('footer a')
-      .should('have.length', links.length)
-      .each(($el, index) => {
-        cy.wrap($el).should('have.text', links[index].text);
-        cy.wrap($el).should('have.attr', 'href', links[index].href);
-      });
+  it.only('Should display the footer with the correct text and links', () => {
+    cy.contains('p', 'Copyright 2024 - Talking About Testing')
+    .should('be.visible')
+  cy.contains('a', 'Hotmart')
+    .should('be.visible')
+    .and('have.attr', 'href', 'https://hotmart.com/pt-br/club/cypress-playground-ate-a-nuvem')
+  cy.contains('a', 'Udemy')
+    .should('be.visible')
+    .and('have.attr', 'href', 'https://udemy.com/user/walmyr')
+  cy.contains('a', 'Blog')
+    .should('be.visible')
+    .and('have.attr', 'href', 'https://talkingabouttesting.com')
+  cy.contains('a', 'YouTube')
+    .should('be.visible')
+    .and('have.attr', 'href', 'https://youtube.com/@talkingabouttesting')
   });
 
   it('Should displays the greeting "Hi, there" when no name is given', () => {
