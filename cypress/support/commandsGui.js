@@ -1,5 +1,4 @@
 
-
 Cypress.Commands.add('visitPageAndAcceptCookies', () => {
   const BASE_URL = `${Cypress.env('BASE_URL')}`
   cy.session([], () => {
