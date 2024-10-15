@@ -29,10 +29,10 @@ describe('Validate the GUI', () => {
     });
   })
 
-  it('Back to clients list', () => {
+  it('Move to custmer page and return to clients list', () => {
     // Open the details page
-    cy.get('[aria-label="View company: Lowe Co"]').click()
-    cy.contains("Lowe Co").should('be.visible')
+    cy.get('button[aria-label^="View company:"]').first().click()
+    cy.contains("Customer Details").should('be.visible')
     // Back to companies list
     cy.contains("Back").click()
     cy.contains("Hi there!").should('be.visible')
