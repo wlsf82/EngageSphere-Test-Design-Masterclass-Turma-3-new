@@ -76,4 +76,14 @@ describe('Validate the API requests', () => {
     })
   })
 
+  it('Request a negative page', () => {
+    cy.request({
+      method: 'GET',
+      url: `${CUSTOMERS_API_URL}?page=-1&limit=10`,
+      failOnStatusCode: false
+    }).then(response => {
+
+      expect(response.status).to.equal(400);
+    })
+  })
 })
