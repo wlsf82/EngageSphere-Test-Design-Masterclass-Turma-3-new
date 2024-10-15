@@ -30,24 +30,25 @@ describe('GUI Tests', () => {
     cy.get('button')
       .contains('Back')
       .click();
-    cy.get('[data-testid="table"]').should('be.visible')
+    cy.get('[data-testid="table"]')
+      .should('be.visible');
   });
 
   it('Should display the footer with the correct text and links', () => {
     cy.contains('p', 'Copyright 2024 - Talking About Testing')
-    .should('be.visible')
+    .should('be.visible');
   cy.contains('a', 'Hotmart')
     .should('be.visible')
-    .and('have.attr', 'href', 'https://hotmart.com/pt-br/club/cypress-playground-ate-a-nuvem')
+    .and('have.attr', 'href', 'https://hotmart.com/pt-br/club/cypress-playground-ate-a-nuvem');
   cy.contains('a', 'Udemy')
     .should('be.visible')
-    .and('have.attr', 'href', 'https://udemy.com/user/walmyr')
+    .and('have.attr', 'href', 'https://udemy.com/user/walmyr');
   cy.contains('a', 'Blog')
     .should('be.visible')
-    .and('have.attr', 'href', 'https://talkingabouttesting.com')
+    .and('have.attr', 'href', 'https://talkingabouttesting.com');
   cy.contains('a', 'YouTube')
     .should('be.visible')
-    .and('have.attr', 'href', 'https://youtube.com/@talkingabouttesting')
+    .and('have.attr', 'href', 'https://youtube.com/@talkingabouttesting');
   });
 
   it('Should displays the greeting "Hi, there" when no name is given', () => {
@@ -66,7 +67,7 @@ describe('GUI Tests', () => {
     cy.contains('h1', 'EngageSphere')
       .should('be.visible');
     cy.get('[class^="ThemeToggle_button"]')
-      .should('be.visible')
+      .should('be.visible');
     cy.get('input[type="text"]')
       .should('be.visible');
   });
