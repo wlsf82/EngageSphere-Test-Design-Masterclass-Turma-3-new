@@ -6,6 +6,5 @@ module.exports = defineConfig({
     env: {
       apiUrl: 'http://localhost:3001'
     }
-  },
-  fixturesFolder: false
+  }
 })

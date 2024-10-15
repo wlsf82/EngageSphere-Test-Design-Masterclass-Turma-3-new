@@ -13,7 +13,7 @@ export default [
       'cypress/no-pause': 'error',
       'cypress/assertion-before-screenshot': 'error',
       'indent': ['error', 2],
-      'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
+      'linebreak-style': ['error', 'unix'],
       'quotes': ['error', 'single'],
       'semi': ['error', 'never'],
       'no-trailing-spaces': 'error'
