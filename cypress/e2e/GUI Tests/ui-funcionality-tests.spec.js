@@ -33,7 +33,7 @@ describe('GUI Tests', () => {
     cy.get('[data-testid="table"]').should('be.visible')
   });
 
-  it.only('Should display the footer with the correct text and links', () => {
+  it('Should display the footer with the correct text and links', () => {
     cy.contains('p', 'Copyright 2024 - Talking About Testing')
     .should('be.visible')
   cy.contains('a', 'Hotmart')
@@ -51,19 +51,24 @@ describe('GUI Tests', () => {
   });
 
   it('Should displays the greeting "Hi, there" when no name is given', () => {
-    cy.get('input[type="text"]').should('have.value', '');
-    cy.get('[data-testid="table"] h2').should('contain.text', 'Hi there!');
+    cy.contains('[data-testid="table"] h2', 'Hi there!')
+      .should('be.visible');
   });
 
   it('Should displays the greeting "Hi, Joe" when the name Joe is given', () => {
-    cy.get('input[type="text"]').type('Joe');
-    cy.get('[data-testid="table"] h2').should('contain.text', 'Hi Joe!');
+    cy.get('input[type="text"]')
+      .type('Joe');
+    cy.contains('[data-testid="table"] h2', 'Hi Joe!')
+      .should('be.visible');
   });
 
-  it('Should display title, theme switcher and input fielda', () => {
-    cy.get('h1').should('contain.text', 'EngageSphere');
-    cy.get('.ThemeToggle_button__dKJr0').should('be.visible')
-    cy.get('input[type="text"]').should('be.visible');
+  it('Should display title, theme switcher and input field', () => {
+    cy.contains('h1', 'EngageSphere')
+      .should('be.visible');
+    cy.get('.ThemeToggle_button__dKJr0')
+      .should('be.visible')
+    cy.get('input[type="text"]')
+      .should('be.visible');
   });
 
   it('Should open and close the messenger', () => {
