@@ -84,6 +84,19 @@ describe('Validate the API requests', () => {
     }).then(response => {
 
       expect(response.status).to.equal(400);
+      expect(response.body).to.have.property('error', 'Invalid page or limit. Both must be positive numbers.')
+    })
+  })
+
+  it('Request a negative limit', () => {
+    cy.request({
+      method: 'GET',
+      url: `${CUSTOMERS_API_URL}?page=1&limit=-10`,
+      failOnStatusCode: false
+    }).then(response => {
+
+      expect(response.status).to.equal(400);
+      expect(response.body).to.have.property('error', 'Invalid page or limit. Both must be positive numbers.')
     })
   })
 })
