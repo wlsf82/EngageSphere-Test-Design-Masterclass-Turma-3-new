@@ -73,8 +73,9 @@ describe('GUI Tests', () => {
 
   it('Should open and close the messenger', () => {
     cy.get('[aria-label="Open messenger"]').click();
-    cy.get('.Messenger_header__7JITT').should('contain.text', 'How can we help you?');
+    cy.get('[class^="Messenger_header"]').should('contain.text', 'How can we help you?');
     cy.get('[aria-label="Close messenger"]').click();
+    cy.get('[class^="Messenger_header"]').should('not.exist');
   });
 
   it('Should ensures that all messenger fields are mandatory and that the first one is focused', () => {
