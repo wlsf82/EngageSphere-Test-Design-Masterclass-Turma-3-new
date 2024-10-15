@@ -65,7 +65,7 @@ describe('GUI Tests', () => {
   it('Should display title, theme switcher and input field', () => {
     cy.contains('h1', 'EngageSphere')
       .should('be.visible');
-    cy.get('.ThemeToggle_button__dKJr0')
+    cy.get('[class^="ThemeToggle_button"]')
       .should('be.visible')
     cy.get('input[type="text"]')
       .should('be.visible');
