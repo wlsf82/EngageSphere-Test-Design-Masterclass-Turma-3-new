@@ -88,7 +88,7 @@ describe('Validate the GUI', () => {
     cy.get('[aria-label="Open messenger"]').should('be.visible')
   })
 
-  it('Show and hid alert of sent message', () => {
+  it('Show and hide alert of sent message', () => {
     cy.clock()
     // Open messenger
     cy.get('[aria-label="Open messenger"]').should('be.visible').click()
@@ -105,16 +105,14 @@ describe('Validate the GUI', () => {
 
   it('Clear and close message form', () => {
     // Open messenger
-    cy.get('[aria-label="Open messenger"]').should('be.visible')
-    cy.get('[aria-label="Open messenger"]').click()
+    cy.get('[aria-label="Open messenger"]').should('be.visible').click()
     cy.get('#messenger-name').type('test');
     cy.get('#email').type('test@test.com');
     cy.get('#message').type('Message test');
     // Close messenger
     cy.get('[aria-label="Close messenger"]').click()
     // Open messenger
-    cy.get('[aria-label="Open messenger"]').should('be.visible')
-    cy.get('[aria-label="Open messenger"]').click()
+    cy.get('[aria-label="Open messenger"]').should('be.visible').click()
 
     // Check if the form is empty
     cy.get('#messenger-name').should('have.value', '');
