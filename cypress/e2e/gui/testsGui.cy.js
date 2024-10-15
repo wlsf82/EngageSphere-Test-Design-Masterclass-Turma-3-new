@@ -91,13 +91,14 @@ describe('Validate the GUI', () => {
   it('Show and hid alert of sent message', () => {
     cy.clock()
     // Open messenger
-    cy.get('[aria-label="Open messenger"]').should('be.visible')
-    cy.get('[aria-label="Open messenger"]').click()
-    cy.writeMessage()
+    cy.get('[aria-label="Open messenger"]').should('be.visible').click()
+    cy.get('#messenger-name').type('test');
+    cy.get('#email').type('test@test.com');
+    cy.get('#message').type('Message test');
     // Send message
     cy.get('[class^="Messenger_sendButton"]').click()
     cy.contains('Your message has been sent.').should('be.visible')
-    cy.tick(10000)
+    cy.tick(3000)
 
     cy.contains('Your message has been sent.').should('not.exist')
   })
@@ -106,7 +107,9 @@ describe('Validate the GUI', () => {
     // Open messenger
     cy.get('[aria-label="Open messenger"]').should('be.visible')
     cy.get('[aria-label="Open messenger"]').click()
-    cy.writeMessage()
+    cy.get('#messenger-name').type('test');
+    cy.get('#email').type('test@test.com');
+    cy.get('#message').type('Message test');
     // Close messenger
     cy.get('[aria-label="Close messenger"]').click()
     // Open messenger
