@@ -99,4 +99,16 @@ describe('Validate the API requests', () => {
       expect(response.body).to.have.property('error', 'Invalid page or limit. Both must be positive numbers.')
     })
   })
+
+  it('Request text page', () => {
+    cy.request({
+      method: 'GET',
+      url: `${CUSTOMERS_API_URL}?page=cicero&limit=-10`,
+      failOnStatusCode: false
+    }).then(response => {
+
+      expect(response.status).to.equal(400);
+      expect(response.body).to.have.property('error', 'Invalid page or limit. Both must be positive numbers.')
+    })
+  })
 })
