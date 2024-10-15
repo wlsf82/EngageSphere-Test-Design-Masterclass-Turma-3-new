@@ -74,12 +74,9 @@ describe('Validate the GUI', () => {
   })
 
   it('Header should have title, theme modifier and input', () => {
-    cy.get('[class^="Header_container"]').then(($header) => {
-
-      cy.wrap($header).find('h1').should('have.text', 'EngageSphere');
-      cy.wrap($header).find('input[type="text"]').should('exist');
-      cy.wrap($header).find('button[class="ThemeToggle_button__kDYIH"]').should('exist');
-    });
+    cy.contains('h1', 'EngageSphere').should('be.visible')
+    cy.get('[class^="ThemeToggle_button"]').should('be.visible')
+    cy.get('input[type="text"]').should('be.visible')
   })
 
   it('Open and close the messenger', () => {
