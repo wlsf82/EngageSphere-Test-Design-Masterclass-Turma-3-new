@@ -40,21 +40,23 @@ describe('Validate the GUI', () => {
 
   it('Check footer texts and links', () => {
     // Check Hotmart attributes
-    cy.contains('Hotmart')
-      .should('have.attr', 'href')
-      .and('include', 'https://hotmart.com/');
+    cy.contains('a', 'Hotmart')
+      .should('be.visible')
+      .and('have.attr', 'href', 'https://hotmart.com/pt-br/club/cypress-playground-ate-a-nuvem')
     // Check Udemy attributes
-    cy.contains('Udemy')
-      .should('have.attr', 'href')
-      .and('eq', 'https://udemy.com/user/walmyr');
+    cy.contains('a', 'Udemy')
+      .should('be.visible')
+      .and('have.attr', 'href', 'https://udemy.com/user/walmyr')
     // Check Blog attributes
-    cy.contains('Blog')
-      .should('have.attr', 'href')
-      .and('eq', 'https://talkingabouttesting.com');
+    cy.contains('a', 'Blog')
+      .should('be.visible')
+      .and('have.attr', 'href', 'https://talkingabouttesting.com')
     // Check Youtube attributes
-    cy.contains('YouTube')
-      .should('have.attr', 'href')
-      .and('eq', 'https://youtube.com/@talkingabouttesting');
+    cy.contains('a', 'YouTube')
+      .should('be.visible')
+      .and('have.attr', 'href', 'https://youtube.com/@talkingabouttesting')
+    // Check Copyright attributes
+    cy.contains('p', 'Copyright 2024 - Talking About Testing').should('be.visible')
   })
 
   it('Check welcome message', () => {
