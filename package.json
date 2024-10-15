@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "Sample project with a Node.js backend and a React frontend.",
   "scripts": {
+    "test": "cypress run",
+    "cy:open": "cypress open",
+    "lint": "eslint cypress/**/*.js && eslint cypress.config.js",
+    "lint:fix": "eslint cypress/**/*.js --fix && eslint cypress.config.js --fix",
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && npm start",
-    "start:server": "cd backend && npm start"
+    "start:server": "cd backend && npm start",
+    "test:api": "cypress run --spec 'cypress/e2e/api.cy.js' --config baseUrl=http://localhost:3001",
+    "test:gui": "cypress run --spec 'cypress/e2e/gui/**.cy.js'"
   },
   "repository": {
     "type": "git",
@@ -17,7 +23,15 @@
   "license": "MIT",
   "homepage": "https://github.com/wlsf82/EngageSphere-Test-Design-Masterclass-Turma-3/blob/main/README.md",
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@eslint/js": "^9.12.0",
+    "axe-core": "^4.10.0",
+    "cypress": "^13.15.0",
+    "cypress-axe": "^1.5.0",
+    "cypress-plugin-api": "^2.11.2",
+    "eslint": "^9.12.0",
+    "eslint-plugin-cypress": "^3.5.0",
+    "globals": "^15.10.0"
   },
   "browserslist": {
     "production": [
