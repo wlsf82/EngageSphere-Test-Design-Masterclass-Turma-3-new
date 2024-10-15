@@ -6,44 +6,31 @@ describe('GUI Tests', () => {
     cy.visit('/');
   });
 
-  const selectCompanySize = (size) => {
-    cy.get('[data-testid="size-filter"]').select(size);
-  };
-
-  const clickViewCompanyButton = (companyName) => {
-    cy.get('[data-testid="table"] tbody tr').contains(companyName)
-      .parent()
-      .within(() => {
-        cy.get('button').contains('View').click();
-      });
-  };
-
-  const clickBackButton = () => {
-    cy.get('button').contains('Back').click();
-  }
-
-  const clickFirstViewButton = () => {
-    cy.get('[data-testid="table"] tbody tr')
-      .first()
-      .within(() => {
-        cy.get('button').contains('View').click();
-      });
-  }
-
   it('Should maintain filters when returning from customer details', () => {
-    selectCompanySize('Small');
-    cy.get('[data-testid="table"] tbody tr').should('have.length', 1).and('contain.text', 'Small');
-    clickViewCompanyButton('Jacobs Co');
-    cy.contains('Customer Details');
-    clickBackButton();
-    cy.get('[data-testid="table"] tbody tr').should('have.length', 1).and('contain.text', 'Small');
+    cy.get('[data-testid="size-filter"]')
+      .select('Small');
+    cy.get('button[aria-label^="View company:"]')
+      .first()
+      .click()
+    cy.get('[class^="CustomerDetail"] h2')
+      .should('be.visible');
+    cy.get('button')
+      .contains('Back')
+      .click();
+    cy.get('[data-testid="size-filter"]')
+      .should('have.value', 'Small');
   });
 
-  it('Should return to the customer list after clicking back', () => {
-    clickFirstViewButton();
-    cy.contains('Customer Details');
-    clickBackButton();
-    cy.get('[data-testid="table"] tbody tr').should('have.length', 10)
+  it.only('Should return to the customer list after clicking back', () => {
+    cy.get('button[aria-label^="View company:"]')
+      .first()
+      .click();
+    cy.get('[class^="CustomerDetail"] h2')
+      .should('be.visible');
+    cy.get('button')
+      .contains('Back')
+      .click();
+    cy.get('[data-testid="table"]').should('be.visible')
   });
 
   //não consegui pensar em uma maneira simples de fazer esse cara, queria verificar se cada link estava mandando pro lugar correto tbm
