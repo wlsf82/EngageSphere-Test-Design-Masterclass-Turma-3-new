@@ -116,19 +116,28 @@ describe('GUI Tests', () => {
   });
 
   it('Should clears all messenger form fields when you fill them in, close the messenger, and open it again', () => {
-    cy.get('[aria-label="Open messenger"]').click();
-    cy.get('#messenger-name').type('Eduardo Effting');
-    cy.get('#email').type('eduardoeffs@gmail.com');
-    cy.get('#message').type('Test message');
-    cy.get('button[type="submit"]').click();
-    cy.get('.Messenger_input__xCorb, textarea').each(($el) => {
-      cy.wrap($el).should('have.value', '');
-    });
-    cy.get('[aria-label="Close messenger"]').click();
-    cy.get('[aria-label="Open messenger"]').click();
-    cy.get('.Messenger_input__xCorb, textarea').each(($el) => {
-      cy.wrap($el).should('have.value', '');
-    });
+    cy.get('[aria-label="Open messenger"]')
+      .click();
+    cy.get('#messenger-name')
+      .type('Eduardo Effting');
+    cy.get('#email')
+      .type('eduardoeffs@gmail.com');
+    cy.get('#message')
+      .type('Test message');
+    cy.get('[aria-label="Close messenger"]')
+      .click();
+    cy.get('[aria-label="Open messenger"]')
+      .click();
+    cy.getByClassStartsWith('Messenger_form')
+      .find('input[type="text"]')
+      .should('be.focused')
+      .and('have.value', '');
+    cy.getByClassStartsWith('Messenger_form')
+      .find('input[type="email"]')
+      .should('have.value', '');
+    cy.getByClassStartsWith('Messenger_form')
+      .find('textarea')
+      .should('have.value', '');
   });
 
   it('Should display "Company name" and "Action" columns and hide "ID", "Industry", "Number of employees", and "Size" columns', () => {
