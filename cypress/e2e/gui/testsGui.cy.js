@@ -81,11 +81,9 @@ describe('Validate the GUI', () => {
 
   it('Open and close the messenger', () => {
     // Open messenger
-    cy.get('[aria-label="Open messenger"]').should('be.visible')
-    cy.get('[aria-label="Open messenger"]').click()
+    cy.get('[aria-label="Open messenger"]').should('be.visible').click()
     // Close messenger
-    cy.get('[aria-label="Close messenger"]').should('be.visible')
-    cy.get('[aria-label="Close messenger"]').click()
+    cy.get('[aria-label="Close messenger"]').should('be.visible').click()
 
     cy.get('[aria-label="Open messenger"]').should('be.visible')
   })
