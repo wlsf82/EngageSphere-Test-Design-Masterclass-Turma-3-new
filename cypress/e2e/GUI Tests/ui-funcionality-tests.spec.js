@@ -72,10 +72,14 @@ describe('GUI Tests', () => {
   });
 
   it('Should open and close the messenger', () => {
-    cy.get('[aria-label="Open messenger"]').click();
-    cy.get('[class^="Messenger_header"]').should('contain.text', 'How can we help you?');
-    cy.get('[aria-label="Close messenger"]').click();
-    cy.get('[class^="Messenger_header"]').should('not.exist');
+    cy.get('[aria-label="Open messenger"]')
+      .click();
+    cy.contains('[class^="Messenger_header"] h2', 'How can we help you?')
+      .should('be.visible');
+    cy.get('[aria-label="Close messenger"]')
+      .click();
+    cy.get('[class^="Messenger_header"]')
+      .should('not.exist');
   });
 
   it('Should ensures that all messenger fields are mandatory and that the first one is focused', () => {
@@ -93,14 +97,22 @@ describe('GUI Tests', () => {
   });
 
   it('Should show and hide a success message upon successfully sending the messenger form', () => {
-    cy.get('[aria-label="Open messenger"]').click();
-    cy.get('#messenger-name').type('Eduardo Effting');
-    cy.get('#email').type('eduardoeffs@gmail.com');
-    cy.get('#message').type('Test message');
-    cy.get('button[type="submit"]').click();
-    cy.get('[role="alert"]').should('be.visible').and('contain', 'Your message has been sent.');
-    cy.wait(3000);
-    cy.get('[role="alert"]').should('not.exist');
+    cy.clock();
+    cy.get('[aria-label="Open messenger"]')
+      .click();
+    cy.get('#messenger-name')
+      .type('Eduardo Effting');
+    cy.get('#email')
+      .type('eduardoeffs@gmail.com');
+    cy.get('#message')
+      .type('Test message');
+    cy.get('button[type="submit"]')
+      .click();
+    cy.contains('[role="alert"]', 'Your message has been sent.')
+      .should('be.visible');
+    cy.tick(3000);
+    cy.get('[role="alert"]')
+      .should('not.exist');
   });
 
   it('Should clears all messenger form fields when you fill them in, close the messenger, and open it again', () => {
@@ -121,23 +133,17 @@ describe('GUI Tests', () => {
 
   it('Should display "Company name" and "Action" columns and hide "ID", "Industry", "Number of employees", and "Size" columns', () => {
     cy.viewport('iphone-6');
-    cy.get('table')
-      .contains('Company name')
+    cy.contains('th', 'Company name')
       .should('be.visible');
-    cy.get('table')
-      .contains('Action')
+    cy.contains('th', 'Action')
       .should('be.visible');
-    cy.get('table')
-      .contains('ID')
+    cy.contains('th', 'ID')
       .should('not.be.visible');
-    cy.get('table')
-      .contains('Industry')
+    cy.contains('th', 'Industry')
       .should('not.be.visible');
-    cy.get('table')
-      .contains('Number of employees')
+    cy.contains('th', 'Number of employees')
       .should('not.be.visible');
-    cy.get('table')
-      .contains('Size')
+    cy.contains('th', 'Size')
       .should('not.be.visible');
   });
 });
