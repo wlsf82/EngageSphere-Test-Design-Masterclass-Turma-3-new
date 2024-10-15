@@ -7,7 +7,6 @@ describe('EngageSphere gui test cases', () => {
       .contains('Accept')
       .click()
   });
-
     it('Keeps the filters when coming back from the customer details view ', () => {
       cy.get('select[data-testid="size-filter"]')
       .should('be.visible')
@@ -22,7 +21,6 @@ describe('EngageSphere gui test cases', () => {
       cy.get('select[data-testid="size-filter"]')
       .should('have.value', 'Medium')
     });
-
     it('It goes back to the customers list when clicking the "Back" button *', () => {
       cy.get('button')
       .eq(5)
@@ -34,7 +32,6 @@ describe('EngageSphere gui test cases', () => {
       .should('have.text', 'Below is our customer list.')
       .and('be.visible')
     });
-
     it('It renders the footer with the right text and links *', () => {
       cy.get('footer')
       .should('be.visible')
@@ -48,14 +45,12 @@ describe('EngageSphere gui test cases', () => {
       cy.get('a[href="https://youtube.com/@talkingabouttesting" ]')
       .should('have.text', 'YouTube')
     });
-
     it('It renders the "Hi there" greeting when no name is provided *', () => {
       cy.get('input[id=name]')
       .should('have.value', '')
       cy.get('h2')
       .should('contain', 'Hi there!')
     });
-
     it('It renders the "Hi Joe" greeting when name is provided *', () => {
       cy.get('input[id=name]')
       .type('Joe')
@@ -63,7 +58,6 @@ describe('EngageSphere gui test cases', () => {
       cy.get('h2')
       .should('contain', 'Hi Joe!')
     });
-
     it('It renders the header with a heading, theme`s toggle, and a text input field', () => {
       cy.get('.Header_container__7BmbC')
       .should('be.visible')
@@ -73,7 +67,6 @@ describe('EngageSphere gui test cases', () => {
       cy.get('input[id=name]')
       .should('be.visible')
     });
-
     it('It opens and closes the messenger', () => {
       cy.get('button[class="Messenger_openCloseButton__Kb07C"')
       .click()
@@ -85,7 +78,6 @@ describe('EngageSphere gui test cases', () => {
       .should('not.exist')
       
     });
-
     it('It makes sure all messenger`s fields are mandatory and the first one is focused', () => {
       cy.get('button[class="Messenger_openCloseButton__Kb07C"')
       .click()
@@ -99,7 +91,6 @@ describe('EngageSphere gui test cases', () => {
       .should('be.visible')
       .and('have.prop', 'required', true)
     });
-
     it('It shows and hides a success message when successfully submitting the messenger form', () => {
       cy.get('button[class="Messenger_openCloseButton__Kb07C"')
       .click()
@@ -114,7 +105,6 @@ describe('EngageSphere gui test cases', () => {
       .should('exist')
       .and('have.text', 'Your message has been sent.')
     });
-
     it('It clears all the messenger`s form fields when filling them, closing the messenger, and opening it again', () => {
       cy.get('button[class="Messenger_openCloseButton__Kb07C"')
       .click()
@@ -143,7 +133,6 @@ describe('EngageSphere gui test cases', () => {
       .should('be.visible')
       
     });
-
     it('It shows the Company name and Action columns and hides the ID, Industry, Number of Employees, and Size columns in a mobile viewport', () => {
       cy.viewport('iphone-6')
       cy.get('th').
@@ -158,6 +147,5 @@ describe('EngageSphere gui test cases', () => {
       .contains('Number of employees').should('not.be.visible')
       cy.get('th')
       .contains('Size').should('not.be.visible')
-    });
-    
+    });    
   });
