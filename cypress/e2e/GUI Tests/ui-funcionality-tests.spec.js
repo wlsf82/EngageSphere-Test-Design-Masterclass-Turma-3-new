@@ -80,10 +80,16 @@ describe('GUI Tests', () => {
 
   it('Should ensures that all messenger fields are mandatory and that the first one is focused', () => {
     cy.get('[aria-label="Open messenger"]').click();
-    cy.get('.Messenger_input__xCorb, textarea').each(($el) => {
-      cy.wrap($el).should('have.attr', 'required');
-    });
-    cy.get('.Messenger_input__xCorb').first().should('have.focus');
+    cy.getByClassStartsWith('Messenger_form')
+      .find('input[type="text"]')
+      .should('be.focused')
+      .and('have.attr', 'required');
+    cy.getByClassStartsWith('Messenger_form')
+      .find('input[type="email"]')
+      .should('have.attr', 'required');
+    cy.getByClassStartsWith('Messenger_form')
+      .find('textarea')
+      .should('have.attr', 'required');
   });
 
   it('Should show and hide a success message upon successfully sending the messenger form', () => {
