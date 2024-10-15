@@ -74,9 +74,9 @@ describe('Validate the GUI', () => {
   })
 
   it('Header should have title, theme modifier and input', () => {
-    cy.get('.Header_container__2fKL4').then(($header) => {
-      cy.wrap($header).find('h1').should('have.text', 'EngageSphere');
+    cy.get('[class^="Header_container"]').then(($header) => {
 
+      cy.wrap($header).find('h1').should('have.text', 'EngageSphere');
       cy.wrap($header).find('input[type="text"]').should('exist');
       cy.wrap($header).find('button[class="ThemeToggle_button__kDYIH"]').should('exist');
     });
@@ -100,7 +100,7 @@ describe('Validate the GUI', () => {
     cy.get('[aria-label="Open messenger"]').click()
     cy.writeMessage()
     // Send message
-    cy.get('.Messenger_sendButton__17Bo4').click()
+    cy.get('[class^="Messenger_sendButton"]').click()
     cy.contains('Your message has been sent.').should('be.visible')
     cy.tick(10000)
 
