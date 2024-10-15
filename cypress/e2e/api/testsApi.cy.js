@@ -49,4 +49,17 @@ describe('Validate the API requests', () => {
       expect(response.body.pageInfo.totalPages).to.equal(3);
     })
   })
+
+  it('Filter small size companies', () => {
+    cy.request({
+      method: 'GET',
+      url: `${CUSTOMERS_API_URL}?page=1&limit=10&size=Small&industry=All`,
+    }).then(response => {
+
+      expect(response.status).to.equal(200);
+      // Check if all returned companies have less than 100 employees
+      const allCompaniesHaveLessThan100Employees = response.body.customers.every(customer => customer.employees < 100);
+      expect(allCompaniesHaveLessThan100Employees).to.be.true;
+    })
+  })
 })
