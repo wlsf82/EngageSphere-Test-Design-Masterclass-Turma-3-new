@@ -1,13 +1,10 @@
+const API_URL = Cypress.env('API_URL')
+const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
+
 describe('API Test', () => {
-
   it('Verifica o código de status 200', () => {
-
-    cy.request({
-      method: 'GET',
-      url: 'http://localhost:3001/customers'
-    }).then((response) => {
-      expect(response.status).to.eq(200);
-    });
-  });
-
+    cy.request(CUSTOMERS_API_URL)
+      .its('status')
+      .should('eq', 200)
+  })
 });
