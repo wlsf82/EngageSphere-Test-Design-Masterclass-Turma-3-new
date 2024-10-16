@@ -1,8 +1,13 @@
+const API_URL = Cypress.env('API_URL');
+
 describe('Get Customers', () => {
-  it('it returns the correct status and body structure', () => {
-    cy.api_getCustomers().then((response) => {
-      expect(response.status).to.eq(200);
-      const customers = response.body.customers;
+  it('returns the correct status and body structure', () => {
+    cy.request({
+      method: 'GET',
+      url: `${API_URL}/customers`,
+    }).then(({ status, body }) => {
+      expect(status).to.eq(200);
+      const customers = body.customers;
       customers.forEach((customer) => {
         expect(customer).to.have.property('id');
         expect(customer).to.have.property('name');

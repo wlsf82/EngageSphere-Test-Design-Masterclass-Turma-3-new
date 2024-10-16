@@ -14,6 +14,6 @@ module.exports = defineConfig({
     },
     indexHtmlFile: 'frontend/cypress/support/component-index.html',
     specPattern: 'frontend/src/**/*.cy.{js,jsx,ts,tsx}',
-    supportFile: 'frontend/cypress/support/component.js'
+    supportFile: 'frontend/cypress/support/component.js',
   },
 });
