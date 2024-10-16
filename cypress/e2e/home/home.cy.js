@@ -56,7 +56,7 @@ describe('Home Page -', () => {
       cy.visit('/')
     })
 
-    it.only('It correctly downloads a list of customers as a CSV file', () => {
+    it('It correctly downloads a list of customers as a CSV file', () => {
       const downloadsFolder = Cypress.config("downloadsFolder");
       cy.readFile(path.join(downloadsFolder, "customers.csv")).should("exist");
     })
