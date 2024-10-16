@@ -34,4 +34,4 @@ Headless: npm test or npm t
 ```
 ___
 
-Made with ❤️ by [Walmyr](https://walmyr.dev).
+Made with ❤️ by [Walmyr](https://walmyr.dev) and [Pedro Hyvo]().
