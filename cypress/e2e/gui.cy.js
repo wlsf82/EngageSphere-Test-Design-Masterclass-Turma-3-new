@@ -5,7 +5,7 @@ describe('EngageSphere gui test cases', () => {
       cy.visit('/')
       cy.get('button')
       .contains('Accept')
-      .click()
+       .click()
   });
     it('Keeps the filters when coming back from the customer details view ', () => {
       cy.get('select[data-testid="size-filter"]')
@@ -14,20 +14,20 @@ describe('EngageSphere gui test cases', () => {
       .should('have.value', 'Medium')
       cy.get('button')
       .eq(5)
-      .click();
+      .click()
       cy.get('button')
       .contains('Back')
-      .click();
+      .click()
       cy.get('select[data-testid="size-filter"]')
       .should('have.value', 'Medium')
     });
     it('It goes back to the customers list when clicking the "Back" button *', () => {
       cy.get('button')
       .eq(5)
-      .click();
+      .click()
       cy.get('button')
       .contains('Back')
-      .click();
+      .click()
       cy.get('p').eq(0)
       .should('have.text', 'Below is our customer list.')
       .and('be.visible')

@@ -2,68 +2,25 @@
 
 Sample project with a [Node.js](https://nodejs.org/) backend and a [React](https://react.dev/) frontend.
 
+## Business rules
 
-## Cloning the Project
-
-To clone this project from GitHub, follow these steps:
-
-1. Open your terminal or command prompt.
-2. Navigate to the directory where you want to clone the project.
-3. Run the following command:
-
-  ```sh
-  git clone https://github.com/your-username/EngageSphere-Test-Design-Masterclass-Turma-3-guilherme-dalbo.git
-  ```
-
-4. Navigate into the cloned repository:
-
-  ```sh
-  cd EngageSphere-Test-Design-Masterclass-Turma-3-guilherme-dalbo
-  ```
-
-You now have a local copy of the project.
+Read the following [doc](./docs/Requirements.md) to understand all the EngageSphere application's functionalities.
 
 ## Pre-requirements
 
 To run this project, you will need:
 
-- [git](https://git-scm.com/downloads)  `2.42.1` 
-- [Node.js](https://nodejs.org/en/)  `v20.11.0` 
-- npm  `10.2.4` 
+- [git](https://git-scm.com/downloads) (I've used version `2.42.1` while writing this doc)
+- [Node.js](https://nodejs.org/en/) (I've used version `v20.16.0` while writing this doc)
+- npm (I've used version `10.8.3` while writing this doc)
 
 **Note:** When installing Node.js, npm is automatically installed too.
 
-##  Installing and starting the servers
+## Installing and starting the servers
 
-## How to run it
+Read the following [doc](./docs/TestEnvironment.md) to install and start the backend and frontend servers.
 
-After cloning the repo ...
-
-###  Starting the backend
-
-Open a terminal, go to the root of this repo and:
-
-```sh
-cd backend
-npm install
-npm start
-```
-
-The server will be listening on port 3001.
-
-```js
-const port = 3001;
-```
-
-###  Starting the frontend
-
-Open a new terminal, go to the root of this repo and:
-
-```sh
-cd frontend
-npm install
-npm start
-```
+## Test cases
 
 #### Running Cypress
 
@@ -78,6 +35,3 @@ npx cypress open
 ___
 
 Made with ❤️ by [Walmyr](https://walmyr.dev).
-
-**Note:**
-This codes, except the tests were made by Walmyr, so I will be deleting the parts that redirects to his documents about the lessons we took 
