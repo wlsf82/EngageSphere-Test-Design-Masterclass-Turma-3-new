@@ -1,65 +1,37 @@
-# Automação de testes do projeto Engagesphere
-Este projeto utiliza o Cypress para automação de testes de UI (interface do usuário) e testes de API.
+EngageSphere
+Sample project with a Node.js backend and a React frontend.
 
+Business rules
+Read the following doc to understand all the EngageSphere application's functionalities.
 
-📋 Pré-requisitos
-Antes de rodar o projeto, você precisará ter as seguintes ferramentas instaladas:
+Pre-requirements
+To run this project, you will need:
 
-- Node.js (versão 12 ou superior)
-- npm (gerenciador de pacotes que acompanha o Node.js) ou yarn
+git (I've used version 2.42.1 while writing this doc)
+Node.js (I've used version v20.16.0 while writing this doc)
+npm (I've used version 10.8.3 while writing this doc)
+Note: When installing Node.js, npm is automatically installed too.
 
-🔧 Instalando o Node.js e npm
-Para instalar o Node.js e o npm, siga os passos abaixo:
+Installing and starting the servers
+Read the following doc to install and start the backend and frontend servers.
 
-Acesse o site oficial do [Node.js](https://nodejs.org/pt) e faça o download da versão recomendada para o seu sistema operacional:
+Test cases
 
-Siga as instruções de instalação fornecidas pela página.
+Check if Node.js and npm are installed correctly by running the following commands in the terminal:
 
-Verifique se o Node.js e npm estão instalados corretamente, executando os comandos abaixo no terminal:
-*node -v*
-*npm -v*
+```node -v```
+```npm -v```
 
-Se preferir usar yarn, instale-o globalmente:
-*npm install -g yarn*
+Installing Dependencies With npm:
 
+```npm install```
 
-🚀 Clonando o projeto
-Primeiro, clone o repositório para a sua máquina local:
+After installation, you can open Cypress with the command: With npm:
 
-git clone <url-do-repositorio>
+```npx cypress open```
 
+Running the Tests To run the automated tests, use the following command:
 
-📦 Instalação de Dependências
-com npm:
-npm install 
+```npx cypress run```
 
-com yarn:
-yarn install
-
-
-🔧 Instalando o Cypress
-Para instalar o Cypress. Siga os passos abaixo:
-
-Com npm:
-npm install cypress --save-dev
-
-Com yarn:
-yarn add cypress --dev
-
-
-Após a instalação, você pode abrir o Cypress com o comando:
-Com npm:
-npx cypress open
-
-Com yarn:
-yarn run cypress open
-
-
-▶️ Executando os Testes
-Para rodar os testes automatizados, utilize o seguinte comando:
-
-Com npm:
-npx cypress run
-
-Com yarn:
-yarn run cypress run
+Made with ❤️ by Walmyr.
