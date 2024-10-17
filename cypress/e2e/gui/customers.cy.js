@@ -15,6 +15,21 @@ describe('Customers', () => {
       cy.contains('p', 'Below is our customer list.').should('be.visible');
     });
 
+    it('shows a Loading... fallback element before the initial customers fetch', () => {
+      cy.intercept(
+        'GET',
+        `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`,
+        (req) => {
+          req.reply((res) => {
+            res.setDelay(4000);
+          });
+        }
+      ).as('getDelayedCustomers');
+      cy.visit('/');
+      cy.wait('@getDelayedCustomers');
+      cy.contains('p', 'Loading...').should('be.visible');
+    });
+
     context('Empty State', () => {
       beforeEach(() => {
         cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`, {
