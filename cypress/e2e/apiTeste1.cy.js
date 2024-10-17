@@ -1,4 +1,3 @@
-// tetse exercicios iniciais !!//
 describe('API de Clientes', { defaultCommandTimeout: 10000 }, () => {
     const API_URL = 'http://localhost:3001'
     const UI_URL = 'http://localhost:3000'
