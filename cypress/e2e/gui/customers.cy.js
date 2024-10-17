@@ -238,3 +238,47 @@ describe('Customers', () => {
     });
   });
 });
+
+describe('Accessibility', () => {
+  beforeEach(() => {
+    cy.setCookie('cookieConsent', 'accepted');
+    cy.visit('/');
+    cy.injectAxe();
+  });
+
+  context('Light Mode', () => {
+    it('finds no a11y issues in light mode in the customer table', () => {
+      cy.checkA11y();
+    });
+
+    it('finds no a11y issues in the customer details and address view', () => {
+      cy.get('button').contains('View').click();
+      cy.checkA11y();
+    });
+
+    it('finds no a11y issues in the messenger form', () => {
+      cy.getByClassStartsWith('Messenger_openCloseButton').click();
+      cy.checkA11y();
+    });
+  });
+
+  context('Dark Mode', () => {
+    beforeEach(() => {
+      cy.getByClassStartsWith('ThemeToggle_button').click();
+    });
+
+    it('finds no a11y issues in dark mode in the customer table', () => {
+      cy.checkA11y();
+    });
+
+    it('It finds no a11y issues in dark mode in the customer details and address view', () => {
+      cy.get('button').contains('View').click();
+      cy.checkA11y();
+    });
+
+    it('finds no a11y issues in the messenger form', () => {
+      cy.getByClassStartsWith('Messenger_openCloseButton').click();
+      cy.checkA11y();
+    });
+  });
+});
