@@ -5,7 +5,7 @@ describe('Validate the GUI', () => {
       method: 'GET',
       url: `${CUSTOMERS_API_URL}?**`,
     }).as('getCustomers');
-    cy.visitPageAndAcceptCookies()
+    cy.setCookie('cookieConsent', 'accepted')
     cy.visit('/')
   })
 
