@@ -1,13 +1,12 @@
 describe('Validate the GUI', () => {
   beforeEach(() => {
-    const BASE_URL = `${Cypress.env('BASE_URL')}`
     const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
     cy.intercept({
       method: 'GET',
       url: `${CUSTOMERS_API_URL}?**`,
     }).as('getCustomers');
     cy.visitPageAndAcceptCookies()
-    cy.visit(BASE_URL)
+    cy.visit('/')
   })
 
   it('Apply a filter, go to a customer page, return to the list page, and check if the previous filters are selected', () => {
