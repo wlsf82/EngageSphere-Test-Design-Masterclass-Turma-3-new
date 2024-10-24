@@ -1,13 +1,7 @@
-/// <reference types="Cypress" />
-
-//API Test Suit
+/// <reference types="cypress" />
 describe('API Tests', () => {
-
-    it('Recupera clientes com sucesso', () => {
-        //Realiza uma request para a página e verifica se a resposta é 200
-        cy.request('https://engage-sphere.vercel.app').should(function (response) {
-            console.log(response)
-            const { status } = response
+    it('Realiza uma request para a pagina e verifica se a resposta Ã© um statusCode 200 ', () => {
+        cy.request('/').should(function ({ status }) {
             expect(status).to.equal(200)
         })
     })
