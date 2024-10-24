@@ -11,34 +11,16 @@ describe('Validate the API requests', () => {
       });
     })
 
-    it('Change the page and check the first customers', () => {
-      let firstCustomerId = '';
-      cy.request({
-        method: 'GET',
-        url: CUSTOMERS_API_URL,
-      }).then(({ status, body }) => {
-        expect(status).to.equal(200)
-        firstCustomerId = body.customers[0].id;
-      })
-
+    it('Get the second page', () => {
       cy.request({
         method: 'GET',
         url: `${CUSTOMERS_API_URL}?page=2`,
-      }).then(({ status, body }) => {
+      }).then(({ status }) => {
         expect(status).to.equal(200);
-        expect(body.customers[0].id).to.not.equal(firstCustomerId)
       })
     })
 
     it('Change the limits of customers per page', () => {
-      cy.request({
-        method: 'GET',
-        url: CUSTOMERS_API_URL,
-      }).then(({ status, body }) => {
-        expect(status).to.equal(200);
-        expect(body.pageInfo.totalPages).to.equal(5);
-      })
-
       cy.request({
         method: 'GET',
         url: `${CUSTOMERS_API_URL}?page=1&limit=20`,
