@@ -1,10 +1,11 @@
 describe('Validate the GUI', () => {
   beforeEach(() => {
     const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
-    cy.intercept({
-      method: 'GET',
-      url: `${CUSTOMERS_API_URL}?**`,
-    }).as('getCustomers');
+    cy.intercept(
+      'GET',
+      `${CUSTOMERS_API_URL}?**`,
+      { fixture: 'customers' }
+    ).as('getCustomers');
     cy.setCookie('cookieConsent', 'accepted')
     cy.visit('/')
   })
@@ -13,7 +14,7 @@ describe('Validate the GUI', () => {
     cy.get('[data-testid="size-filter"]').select('Medium')
     cy.get('[data-testid="industry-filter"]').select('Retail')
     cy.wait('@getCustomers')
-    cy.get('[aria-label="View company: Kilback Co"]').click()
+    cy.get('[aria-label="View company: Jacobs Co"]').click()
     cy.contains("Company ID").should('be.visible')
     cy.contains("Back").click()
 
