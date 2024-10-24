@@ -1,85 +1,85 @@
 describe('Validate the API requests', () => {
   const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
-  context('Postive scenarios', () => {
-    context('Pagination and limits', () => {
-      it('Get customers successfully', () => {
-        cy.request({
-          method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
-        }).then(response => {
-          expect(response.status).to.equal(200)
-        })
+
+  context('Pagination and limits', () => {
+    it('Get customers successfully', () => {
+      cy.request({
+        method: 'GET',
+        url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
+      }).then(response => {
+        expect(response.status).to.equal(200)
+      })
+    })
+
+    it('Change the page and check the first customers', () => {
+      let firstCustomerId = '';
+      cy.request({
+        method: 'GET',
+        url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
+      }).then(response => {
+
+        expect(response.status).to.equal(200)
+        firstCustomerId = response.body.customers[0].id;
       })
 
-      it('Change the page and check the first customers', () => {
-        let firstCustomerId = '';
-        cy.request({
-          method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
-        }).then(response => {
+      cy.request({
+        method: 'GET',
+        url: `${CUSTOMERS_API_URL}?page=2&limit=10`,
+      }).then(response => {
 
-          expect(response.status).to.equal(200)
-          firstCustomerId = response.body.customers[0].id;
-        })
+        expect(response.status).to.equal(200);
+        expect(response.body.customers[0].id).to.not.equal(firstCustomerId)
+      })
+    })
 
-        cy.request({
-          method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=2&limit=10`,
-        }).then(response => {
+    it('Change the limits of customers per page', () => {
+      cy.request({
+        method: 'GET',
+        url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
+      }).then(response => {
 
-          expect(response.status).to.equal(200);
-          expect(response.body.customers[0].id).to.not.equal(firstCustomerId)
-        })
+        expect(response.status).to.equal(200);
+        expect(response.body.pageInfo.totalPages).to.equal(5);
       })
 
-      it('Change the limits of customers per page', () => {
-        cy.request({
-          method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
-        }).then(response => {
+      cy.request({
+        method: 'GET',
+        url: `${CUSTOMERS_API_URL}?page=1&limit=20`,
+      }).then(response => {
 
-          expect(response.status).to.equal(200);
-          expect(response.body.pageInfo.totalPages).to.equal(5);
-        })
-
-        cy.request({
-          method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=20`,
-        }).then(response => {
-
-          expect(response.status).to.equal(200);
-          expect(response.body.pageInfo.totalPages).to.equal(3);
-        })
+        expect(response.status).to.equal(200);
+        expect(response.body.pageInfo.totalPages).to.equal(3);
       })
-    });
-    context('Filters', () => {
-      it('Filter small size companies', () => {
-        cy.request({
-          method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=10&size=Small&industry=All`,
-        }).then(response => {
+    })
+  });
+  context('Filters', () => {
+    it('Filter small size companies', () => {
+      cy.request({
+        method: 'GET',
+        url: `${CUSTOMERS_API_URL}?page=1&limit=10&size=Small&industry=All`,
+      }).then(response => {
 
-          expect(response.status).to.equal(200);
-          // Check if all returned companies have less than 100 employees
-          const allCompaniesHaveLessThan100Employees = response.body.customers.every(customer => customer.employees < 100);
-          expect(allCompaniesHaveLessThan100Employees).to.be.true;
-        })
+        expect(response.status).to.equal(200);
+        // Check if all returned companies have less than 100 employees
+        const allCompaniesHaveLessThan100Employees = response.body.customers.every(customer => customer.employees < 100);
+        expect(allCompaniesHaveLessThan100Employees).to.be.true;
       })
+    })
 
-      it('Filters logistics companies', () => {
-        cy.request({
-          method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=10&industry=Logistics`,
-        }).then(response => {
+    it('Filters logistics companies', () => {
+      cy.request({
+        method: 'GET',
+        url: `${CUSTOMERS_API_URL}?page=1&limit=10&industry=Logistics`,
+      }).then(response => {
 
-          expect(response.status).to.equal(200);
-          // Check if all returned companies are in the logistics industry
-          const allCompaniesAreLogistics = response.body.customers.every(customer => customer.industry === "Logistics");
-          expect(allCompaniesAreLogistics).to.be.true;
-        })
+        expect(response.status).to.equal(200);
+        // Check if all returned companies are in the logistics industry
+        const allCompaniesAreLogistics = response.body.customers.every(customer => customer.industry === "Logistics");
+        expect(allCompaniesAreLogistics).to.be.true;
       })
     })
   })
+
   context('Negative scenarios', () => {
     context('Pagination and limits', () => {
 
