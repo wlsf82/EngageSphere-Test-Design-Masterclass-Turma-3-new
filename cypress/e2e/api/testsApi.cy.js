@@ -5,7 +5,7 @@ describe('Validate the API requests', () => {
     it('Get customers successfully', () => {
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}`,
+        url: CUSTOMERS_API_URL,
       }).then(({ status }) => {
         expect(status).to.equal(200);
       });
@@ -15,7 +15,7 @@ describe('Validate the API requests', () => {
       let firstCustomerId = '';
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}`,
+        url: CUSTOMERS_API_URL,
       }).then(({ status, body }) => {
         expect(status).to.equal(200)
         firstCustomerId = body.customers[0].id;
@@ -33,7 +33,7 @@ describe('Validate the API requests', () => {
     it('Change the limits of customers per page', () => {
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}`,
+        url: CUSTOMERS_API_URL,
       }).then(({ status, body }) => {
         expect(status).to.equal(200);
         expect(body.pageInfo.totalPages).to.equal(5);
