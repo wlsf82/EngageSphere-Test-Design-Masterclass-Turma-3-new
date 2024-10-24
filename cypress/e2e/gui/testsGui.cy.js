@@ -22,8 +22,7 @@ describe('Validate the GUI', () => {
   })
 
   it('Move to custmer page and return to clients list', () => {
-    // Open the details page
-    cy.get('button[aria-label^="View company:"]').first().click()
+    cy.contains('button', 'View').click()
     cy.contains("Customer Details").should('be.visible')
     cy.contains("Back").click()
 
