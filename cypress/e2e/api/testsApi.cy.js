@@ -76,7 +76,6 @@ describe('Validate the API requests', () => {
 
   context('Negative scenarios', () => {
     context('Pagination and limits', () => {
-
       it('Request a negative page', () => {
         cy.request({
           method: 'GET',
@@ -122,8 +121,6 @@ describe('Validate the API requests', () => {
       })
     })
     context('Filters', () => {
-
-
       it('Request an invalid company size', () => {
         cy.request({
           method: 'GET',
