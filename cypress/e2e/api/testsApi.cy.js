@@ -5,7 +5,7 @@ describe('Validate the API requests', () => {
     it('Get customers successfully', () => {
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
+        url: `${CUSTOMERS_API_URL}`,
       }).then(({ status }) => {
         expect(status).to.equal(200);
       });
@@ -15,7 +15,7 @@ describe('Validate the API requests', () => {
       let firstCustomerId = '';
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
+        url: `${CUSTOMERS_API_URL}`,
       }).then(({ status, body }) => {
         expect(status).to.equal(200)
         firstCustomerId = body.customers[0].id;
@@ -23,7 +23,7 @@ describe('Validate the API requests', () => {
 
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}?page=2&limit=10`,
+        url: `${CUSTOMERS_API_URL}?page=2`,
       }).then(({ status, body }) => {
         expect(status).to.equal(200);
         expect(body.customers[0].id).to.not.equal(firstCustomerId)
@@ -33,7 +33,7 @@ describe('Validate the API requests', () => {
     it('Change the limits of customers per page', () => {
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}?page=1&limit=10`,
+        url: `${CUSTOMERS_API_URL}`,
       }).then(({ status, body }) => {
         expect(status).to.equal(200);
         expect(body.pageInfo.totalPages).to.equal(5);
@@ -52,7 +52,7 @@ describe('Validate the API requests', () => {
     it('Filter small size companies', () => {
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}?page=1&limit=10&size=Small&industry=All`,
+        url: `${CUSTOMERS_API_URL}?size=Small`,
       }).then(({ status, body }) => {
         expect(status).to.equal(200);
         // Check if all returned companies have less than 100 employees
@@ -64,7 +64,7 @@ describe('Validate the API requests', () => {
     it('Filters logistics companies', () => {
       cy.request({
         method: 'GET',
-        url: `${CUSTOMERS_API_URL}?page=1&limit=10&industry=Logistics`,
+        url: `${CUSTOMERS_API_URL}?industry=Logistics`,
       }).then(({ status, body }) => {
         expect(status).to.equal(200);
         // Check if all returned companies are in the logistics industry
@@ -80,7 +80,7 @@ describe('Validate the API requests', () => {
       it('Request a negative page', () => {
         cy.request({
           method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=-1&limit=10`,
+          url: `${CUSTOMERS_API_URL}?page=-1`,
           failOnStatusCode: false
         }).then(({ status, body }) => {
           expect(status).to.equal(400);
@@ -91,7 +91,7 @@ describe('Validate the API requests', () => {
       it('Request a negative limit', () => {
         cy.request({
           method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=-10`,
+          url: `${CUSTOMERS_API_URL}?limit=-10`,
           failOnStatusCode: false
         }).then(({ status, body }) => {
           expect(status).to.equal(400);
@@ -127,7 +127,7 @@ describe('Validate the API requests', () => {
       it('Request an invalid company size', () => {
         cy.request({
           method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=10&size=Cicero&industry=All`,
+          url: `${CUSTOMERS_API_URL}?size=Cicero`,
           failOnStatusCode: false
         }).then(({ status, body }) => {
           expect(status).to.equal(400);
@@ -138,7 +138,7 @@ describe('Validate the API requests', () => {
       it('Request an invalid company industry', () => {
         cy.request({
           method: 'GET',
-          url: `${CUSTOMERS_API_URL}?page=1&limit=10&size=All&industry=Cicero`,
+          url: `${CUSTOMERS_API_URL}?industry=Cicero`,
           failOnStatusCode: false
         }).then(({ status, body }) => {
           expect(status).to.equal(400);
