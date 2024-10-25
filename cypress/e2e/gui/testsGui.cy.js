@@ -28,6 +28,28 @@ describe('Validate the no customers scenarios', () => {
   })
 })
 
+describe('Validate the cookies', () => {
+  beforeEach(() => {
+    const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
+    cy.intercept(
+      'GET',
+      `${CUSTOMERS_API_URL}?**`,
+      { fixture: 'customers' }
+    ).as('getCustomers');
+    cy.visit('/')
+  })
+
+  it('Accept the cookies', () => {
+    cy.contains('button', 'Accept').click()
+    cy.getCookie('cookieConsent').should('have.property', 'value', 'accepted')
+  })
+
+  it('Refuse the cookies', () => {
+    cy.contains('button', 'Decline').click()
+    cy.getCookie('cookieConsent').should('have.property', 'value', 'declined')
+  })
+})
+
 describe('Validate the GUI', () => {
   beforeEach(() => {
     const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
