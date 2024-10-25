@@ -1,3 +1,27 @@
+describe('Validate the no customers scenario', () => {
+  beforeEach(() => {
+    const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
+    cy.intercept(
+      'GET',
+      `${CUSTOMERS_API_URL}?**`,
+      {
+        "customers": [],
+        "pageInfo": {
+          "currentPage": 1,
+          "totalPages": 1,
+          "totalCustomers": 50
+        }
+      }
+    ).as('getNoCustomers');
+    cy.setCookie('cookieConsent', 'accepted')
+    cy.visit('/')
+  })
+
+  it('The empty box image should be visible', () => {
+    cy.get('[title="image of an empty box"]').should('be.visible')
+  })
+})
+
 describe('Validate the GUI', () => {
   beforeEach(() => {
     const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
