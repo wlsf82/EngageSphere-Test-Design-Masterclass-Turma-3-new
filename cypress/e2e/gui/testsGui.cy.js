@@ -10,6 +10,14 @@ describe('Validate the GUI', () => {
     cy.visit('/')
   })
 
+  it('Check limit on localstorage', () => {
+    cy.get('[name="pagination-limit"]').select('50')
+    cy.getAllLocalStorage().then((localStorage) => {
+      const { paginationLimit } = localStorage['http://localhost:3000'];
+      expect(paginationLimit).to.equal('50');
+    });
+  })
+
   it('Apply a filter, go to a customer page, return to the list page, and check if the previous filters are selected', () => {
     cy.get('[data-testid="size-filter"]').select('Medium')
     cy.get('[data-testid="industry-filter"]').select('Retail')
