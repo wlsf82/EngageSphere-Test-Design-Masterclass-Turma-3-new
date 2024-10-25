@@ -31,27 +31,33 @@ describe('Validate the API requests', () => {
     })
   });
   context('Filters', () => {
-    it('Filter small size companies', () => {
-      cy.request({
-        method: 'GET',
-        url: `${CUSTOMERS_API_URL}?size=Small`,
-      }).then(({ status, body }) => {
-        expect(status).to.equal(200);
-        // Check if all returned companies have less than 100 employees
-        const allCompaniesHaveLessThan100Employees = body.customers.every(customer => customer.employees < 100);
-        expect(allCompaniesHaveLessThan100Employees).to.be.true;
+    const sizes = ['Small', 'Medium', 'Enterprise', 'Large Enterprise', 'Very Large Enterprise']
+    const industries = ['Logistics', 'Retail', 'Technology', 'HR', 'Finance']
+    Cypress._.each(sizes, (size) => {
+      it(`Filter company by the size ${size}`, () => {
+        cy.request({
+          method: 'GET',
+          url: `${CUSTOMERS_API_URL}?size=${size}`,
+        }).then(({ status, body }) => {
+          expect(status).to.equal(200);
+          // Check if all returned companies have less than 100 employees
+          const allCompaniesHaveSameSize = body.customers.every(customer => customer.size == `${size}`);
+          expect(allCompaniesHaveSameSize).to.be.true;
+        })
       })
     })
 
-    it('Filters logistics companies', () => {
-      cy.request({
-        method: 'GET',
-        url: `${CUSTOMERS_API_URL}?industry=Logistics`,
-      }).then(({ status, body }) => {
-        expect(status).to.equal(200);
-        // Check if all returned companies are in the logistics industry
-        const allCompaniesAreLogistics = body.customers.every(customer => customer.industry === "Logistics");
-        expect(allCompaniesAreLogistics).to.be.true;
+    Cypress._.each(industries, (industry) => {
+      it(`Filter company by the industry ${industry}`, () => {
+        cy.request({
+          method: 'GET',
+          url: `${CUSTOMERS_API_URL}?industry=${industry}`,
+        }).then(({ status, body }) => {
+          expect(status).to.equal(200);
+          // Check if all returned companies have less than 100 employees
+          const allCompaniesHaveSameIndustry = body.customers.every(customer => customer.industry == industry);
+          expect(allCompaniesHaveSameIndustry).to.be.true;
+        })
       })
     })
   })
