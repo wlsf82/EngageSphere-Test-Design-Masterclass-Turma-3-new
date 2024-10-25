@@ -1,4 +1,4 @@
-describe('Validate the no customers scenario', () => {
+describe('Validate the no customers scenarios', () => {
   beforeEach(() => {
     const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
     cy.intercept(
@@ -23,8 +23,8 @@ describe('Validate the no customers scenario', () => {
 
   it('The input name should be disabled', () => {
     cy.get('[data-testid="name"]')
-    .should('be.visible')
-    .and('have.attr', 'disabled')
+      .should('be.visible')
+      .and('have.attr', 'disabled')
   })
 })
 
@@ -38,6 +38,10 @@ describe('Validate the GUI', () => {
     ).as('getCustomers');
     cy.setCookie('cookieConsent', 'accepted')
     cy.visit('/')
+  })
+
+  it('Check the load element', () => {
+    cy.get('#loading').should('be.visible')
   })
 
   it('Check limit on localstorage', () => {
