@@ -20,6 +20,12 @@ describe('Validate the no customers scenario', () => {
   it('The empty box image should be visible', () => {
     cy.get('[title="image of an empty box"]').should('be.visible')
   })
+
+  it('The input name should be disabled', () => {
+    cy.get('[data-testid="name"]')
+    .should('be.visible')
+    .and('have.attr', 'disabled')
+  })
 })
 
 describe('Validate the GUI', () => {
