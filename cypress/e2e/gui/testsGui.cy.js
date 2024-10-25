@@ -74,6 +74,16 @@ describe('Validate the GUI', () => {
     });
   })
 
+  it('Show the customer address', () => {
+    cy.contains('button', 'View').click()
+    cy.contains('Show address').click()
+    cy.contains('988 Kimberly Fort Apt. 921').should('be.visible')
+    cy.contains('Lake Tracy').should('be.visible')
+    cy.contains('Connecticut').should('be.visible')
+    cy.contains('07115').should('be.visible')
+    cy.contains('United States of America').should('be.visible')
+  })
+
   it('Apply a filter, go to a customer page, return to the list page, and check if the previous filters are selected', () => {
     cy.get('[data-testid="size-filter"]').select('Medium')
     cy.get('[data-testid="industry-filter"]').select('Retail')
