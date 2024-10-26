@@ -158,6 +158,11 @@ describe('Validate the GUI', () => {
       cy.contains('button', 'Size').click()
       cy.get('span[aria-label="ordering by size asc"]').should('be.visible')
     })
+
+    it('Sort by size descendant', () => {
+      cy.contains('button', 'Size').click().click()
+      cy.get('span[aria-label="ordering by size desc"]').should('be.visible')
+    })
   })
 
   context('Validate the customer positive scenarios', () => {
