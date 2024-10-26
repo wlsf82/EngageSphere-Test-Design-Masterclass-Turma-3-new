@@ -100,11 +100,20 @@ describe('Validate the GUI', () => {
   it('Show the customer address', () => {
     cy.contains('button', 'View').click()
     cy.contains('Show address').click()
+
     cy.contains('14135 Kari Garden Suite 427').should('be.visible')
     cy.contains('Mooreshire').should('be.visible')
     cy.contains('Nevada').should('be.visible')
     cy.contains('64043').should('be.visible')
     cy.contains('United States of America').should('be.visible')
+  })
+
+  it('Hide the customer address', () => {
+    cy.contains('button', 'View').click()
+    cy.contains('Show address').click()
+
+    cy.contains('Hide address').click()
+    cy.contains('Show address').should('be.visible')
   })
 
   it('Apply a filter, go to a customer page, return to the list page, and check if the previous filters are selected', () => {
