@@ -215,7 +215,8 @@ describe('Validate the GUI', () => {
     })
 
     it('Download CSV', () => {
-      cy.readFile('cypress/downloads/customersReference.csv', 'utf-8').then((csvReference) => {
+      cy.contains('button', 'Download CSV').click()
+      cy.readFile('cypress/resource/customersReference.csv', 'utf-8').then((csvReference) => {
         cy.readFile('cypress/downloads/customers.csv', 'utf-8').then((csvDownload) => {
           expect(csvDownload).to.equal(csvReference);
         });
