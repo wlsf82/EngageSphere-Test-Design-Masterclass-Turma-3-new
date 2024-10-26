@@ -27,10 +27,7 @@ Read the following [doc](./docs/TestEnvironment.md) to install and start the bac
 Open a Open a new terminal, go to the root of this repo and:
 
 ```sh
-npm install --save-dev cypress@13.15.0
-npm i cypress-plugin-api
-npx run cy:open
-npx run test //To run in headless mode
+npm install 
 ```
 
 ___

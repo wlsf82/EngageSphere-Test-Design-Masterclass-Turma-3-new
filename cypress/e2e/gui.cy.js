@@ -1,34 +1,39 @@
 /// <reference types = "cypress" />
 
 describe('EngageSphere gui test cases', () => {
-beforeEach(() => {
-  Cypress.on('window:before:load', window => {
-    window.document.cookie = 'cookieConsent=accepted'
-  })
-  cy.visit('/')
+  beforeEach(() => {
+    Cypress.on('window:before:load', window => {
+      window.document.cookie = 'cookieConsent=accepted'
+    })
+    cy.visit('/')
 })
 
     it('Keeps the filters when coming back from the customer details view ', () => {
       cy.get('select[data-testid="size-filter"]')
        .should('be.visible')
        .select('Medium')
+
       cy.contains('button', "View")
        .click()
       cy.contains('button', "Back")
        .click()
-      cy.get('select[data-testid="size-filter"]')
+      
+       cy.get('select[data-testid="size-filter"]')
        .should('have.value', 'Medium')
     })
-    it('It goes back to the customers list when clicking the "Back" button *', () => {
+
+    it('Goes back to the customers list when clicking the "Back" button *', () => {
       cy.contains('button', "View")
        .click()
-      cy.contains('button', "Back")	
+      
+       cy.contains('button', "Back")	
        .click()
-      cy.contains('p', "Below is our customer list.")
+      
+       cy.contains('p', "Below is our customer list.")
        .should('be.visible')
     })
 
-    it('It renders the footer with the right text and links *', () => {
+    it('Renders the footer with the right text and links *', () => {
       cy.get('footer')
        .should('be.visible')
        .contains('Copyright 2024 - Talking About Testing')
@@ -42,19 +47,19 @@ beforeEach(() => {
        .should('have.text', 'YouTube')
     })
 
-    it('It renders the "Hi there" greeting when no name is provided *', () => {
+    it('Renders the "Hi there" greeting when no name is provided *', () => {
       cy.contains('h2', 'Hi there')
        .should('be.visible')
     })
 
-    it('It renders the "Hi Joe" greeting when name is provided *', () => {
+    it('Renders the "Hi Joe" greeting when name is provided *', () => {
       cy.get('input[id=name]')
        .type('Joe')
        cy.contains('h2', 'Hi Joe')
        .should('be.visible')
     })
 
-    it('It renders the header with a heading, theme`s toggle, and a text input field', () => {
+    it('Renders the header with a heading, theme`s toggle, and a text input field', () => {
       cy.get('h1')
        .should('be.visible')
        .contains('EngageSphere')
@@ -64,32 +69,41 @@ beforeEach(() => {
        .should('be.visible')
     })
 
-    it('It opens and closes the messenger', () => {
+    it('Opens and closes the messenger', () => {
       cy.get('button[class^="Messenger_openCloseButton"')
        .click()
-      cy.get('div[class^="Messenger_form"')
+      
+       cy.get('div[class^="Messenger_form"')
        .should('be.visible')
-      cy.get('button[class^="Messenger_openCloseButton"')
+      
+       cy.get('button[class^="Messenger_openCloseButton"')
        .click()
-      cy.get('div[class^="Messenger_form"')
+      
+       cy.get('div[class^="Messenger_form"')
        .should('not.exist')
     })
-    it('It makes sure all messenger`s fields are mandatory and the first one is focused', () => {
+
+    it('Makes sure all messenger`s fields are mandatory and the first one is focused', () => {
       cy.get('button[class^="Messenger_openCloseButton"')
        .click()
-      cy.get('input[id="messenger-name"]')
+      
+       cy.get('input[id="messenger-name"]')
        .should('have.focus')
        .and('have.prop', 'required', true)
-      cy.get('input[id="email"]')
+      
+       cy.get('input[id="email"]')
        .should('be.visible')
        .and('have.prop', 'required', true)
-      cy.get('textarea[id="message"]')
+      
+       cy.get('textarea[id="message"]')
        .should('be.visible')
        .and('have.prop', 'required', true)
     })
-    it('It shows and hides a success message when successfully submitting the messenger form', () => {
+
+    it('Shows and hides a success message when successfully submitting the messenger form', () => {
       cy.get('button[class^="Messenger_openCloseButton"')
        .click()
+      
       cy.get('input[id="messenger-name"]')
        .type('Joe')
       cy.get('input[id="email"]')
@@ -97,6 +111,7 @@ beforeEach(() => {
       cy.get('textarea[id="message"]')
        .type('Hello there!')
       cy.get('button[type="submit"]').click()
+      
       cy.get('div[class*="Messenger_success"]')
        .should('exist')
        .and('have.text', 'Your message has been sent.')
@@ -104,11 +119,13 @@ beforeEach(() => {
        .should('not.exist')
     })
 
-    it.only('It clears all the messenger`s form fields when filling them, closing the messenger, and opening it again', () => {
+    it('Clears all the messenger`s form fields when filling them, closing the messenger, and opening it again', () => {
       cy.get('button[class*="Messenger_openCloseButton"')
        .click()
+      
       cy.get('div[class*="Messenger_form"')
        .should('be.visible')
+      
       cy.get('input[id="messenger-name"]')
        .type('Joe')
       cy.get('input[id="email"]')
@@ -119,7 +136,8 @@ beforeEach(() => {
        .click()
       cy.get('button[class*="Messenger_openCloseButton"')
        .click()
-       cy.get('input[id="messenger-name"]')
+      
+      cy.get('input[id="messenger-name"]')
        .should('have.value', '')
       cy.get('input[id="email"]')
        .should('have.value', '')
@@ -127,10 +145,11 @@ beforeEach(() => {
        .should('have.value', '')
     })
 
-    it('It shows the Company name and Action columns and hides the ID, Industry, Number of Employees, and Size columns in a mobile viewport', () => {
+    it('Shows the Company name and Action columns and hides the ID, Industry, Number of Employees, and Size columns in a mobile viewport', () => {
       cy.viewport('iphone-6')
-      cy.get('th').
-      contains('Company name').should('be.visible')
+      
+      cy.get('th')
+      .contains('Company name').should('be.visible')
       cy.get('th')
       .contains('Action').should('be.visible')
       cy.get('th')
