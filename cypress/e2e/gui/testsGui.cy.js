@@ -28,6 +28,29 @@ describe('Validate the no customers scenarios', () => {
   })
 })
 
+describe('Validate the customer missing info scenarios', () => {
+  beforeEach(() => {
+    const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
+    cy.intercept(
+      'GET',
+      `${CUSTOMERS_API_URL}?**`,
+      { fixture: 'customerMissingInfo.json' }
+    ).as('getCustomer');
+    cy.setCookie('cookieConsent', 'accepted')
+    cy.visit('/')
+    cy.contains('button', 'View').click()
+  })
+
+  it('Should not show contact info', () => {
+    cy.contains('No contact info available').should('be.visible')
+  })
+
+  it('Should not show address', () => {
+    cy.contains('Show address').click()
+    cy.contains('No address available').should('be.visible')
+  })
+})
+
 describe('Validate the cookies', () => {
   beforeEach(() => {
     const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
