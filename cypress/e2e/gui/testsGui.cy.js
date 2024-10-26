@@ -168,6 +168,11 @@ describe('Validate the GUI', () => {
       cy.contains('button', 'Number of employees').click()
       cy.get('span[aria-label="ordering by number of employees desc"]').should('be.visible')
     })
+
+    it('Sort by number of employees ascendant', () => {
+      cy.contains('button', 'Number of employees').click().click()
+      cy.get('span[aria-label="ordering by number of employees asc"]').should('be.visible')
+    })
   })
 
   context('Validate the customer positive scenarios', () => {
