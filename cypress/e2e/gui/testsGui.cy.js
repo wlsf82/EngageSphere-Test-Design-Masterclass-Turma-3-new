@@ -105,6 +105,13 @@ describe('Validate the GUI', () => {
           .should('be.visible')
           .should('have.attr', 'disabled')
       })
+
+      it('In the last page, the "Next" button is disabled', () => {
+        cy.contains('button', 'Next').click()
+        cy.contains('button', 'Next')
+          .should('be.visible')
+          .should('have.attr', 'disabled')
+      })
     })
   })
 
