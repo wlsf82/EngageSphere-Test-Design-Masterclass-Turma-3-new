@@ -148,6 +148,18 @@ describe('Validate the GUI', () => {
     })
   })
 
+  context.only('Sorting scenarios', () => {
+    beforeEach(() => {
+      cy.setCookie('cookieConsent', 'accepted')
+      cy.visit('/')
+    })
+
+    it('Sort by size ascendant', () => {
+      cy.contains('button', 'Size').click()
+      cy.get('span[aria-label="ordering by size asc"]').should('be.visible')
+    })
+  })
+
   context('Validate the customer positive scenarios', () => {
     beforeEach(() => {
       const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
