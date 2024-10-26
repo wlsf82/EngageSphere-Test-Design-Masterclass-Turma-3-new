@@ -75,12 +75,9 @@ describe('Validate the GUI', () => {
   })
 
   context('Pagination scenarios', () => {
-    beforeEach(() => {
+    it('Move to second page and check if the "Prev" and "Next" buttons are enabled', () => {
       cy.setCookie('cookieConsent', 'accepted')
       cy.visit('/')
-    })
-
-    it.only('Move to second page and check if the "Prev" and "Next" buttons are enabled', () => {
       cy.contains('button', 'Next').click()
 
       cy.contains('button', 'Prev')
@@ -89,6 +86,25 @@ describe('Validate the GUI', () => {
       cy.contains('button', 'Next')
       .should('be.visible')
       .should('not.have.attr', 'disabled')
+    })
+
+    context('Two page scenarios', () => {
+      beforeEach(() => {
+        const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
+        cy.intercept(
+          'GET',
+          `${CUSTOMERS_API_URL}?**`,
+          { fixture: 'customerMissingInfo.json' }
+        ).as('getCustomer');
+        cy.setCookie('cookieConsent', 'accepted')
+        cy.visit('/')
+      })
+
+      it('In the first page, the "Prev" button is disabled', () => {
+        cy.contains('button', 'Prev')
+          .should('be.visible')
+          .should('have.attr', 'disabled')
+      })
     })
   })
 
