@@ -148,7 +148,7 @@ describe('Validate the GUI', () => {
     })
   })
 
-  context.only('Sorting scenarios', () => {
+  context('Sorting scenarios', () => {
     beforeEach(() => {
       cy.setCookie('cookieConsent', 'accepted')
       cy.visit('/')
@@ -162,6 +162,11 @@ describe('Validate the GUI', () => {
     it('Sort by size descendant', () => {
       cy.contains('button', 'Size').click().click()
       cy.get('span[aria-label="ordering by size desc"]').should('be.visible')
+    })
+
+    it('Sort by number of employees descendant', () => {
+      cy.contains('button', 'Number of employees').click()
+      cy.get('span[aria-label="ordering by number of employees desc"]').should('be.visible')
     })
   })
 
