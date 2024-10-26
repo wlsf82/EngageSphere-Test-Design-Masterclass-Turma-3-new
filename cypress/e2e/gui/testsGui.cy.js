@@ -106,6 +106,21 @@ describe('Validate the GUI', () => {
         .should('have.attr', 'disabled')
     })
 
+    it('Pagination element is rendered when the limit of customer is 50', () => {
+      const FIFTY_CUSTOMERS_URL = `${Cypress.env('API_URL')}/customers**limit=50**`
+      cy.intercept(
+        'GET',
+        `${FIFTY_CUSTOMERS_URL}?**`
+      ).as('getCustomers');
+      cy.setCookie('cookieConsent', 'accepted')
+      cy.visit('/')
+      cy.get('[name="pagination-limit"]').select('50')
+      cy.wait('@getCustomers')
+
+      cy.get('[data-testid="pagination"]').should('be.visible')
+      cy.get('tr').should('have.length', 51);
+    })
+
     context('Two page scenarios', () => {
       beforeEach(() => {
         const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
