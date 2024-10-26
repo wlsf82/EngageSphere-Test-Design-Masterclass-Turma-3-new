@@ -81,11 +81,29 @@ describe('Validate the GUI', () => {
       cy.contains('button', 'Next').click()
 
       cy.contains('button', 'Prev')
-      .should('be.visible')
-      .should('not.have.attr', 'disabled')
+        .should('be.visible')
+        .should('not.have.attr', 'disabled')
       cy.contains('button', 'Next')
-      .should('be.visible')
-      .should('not.have.attr', 'disabled')
+        .should('be.visible')
+        .should('not.have.attr', 'disabled')
+    })
+
+    it('In one page, "Prev" and "Next" buttons should be disabled', () => {
+      const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
+      cy.intercept(
+        'GET',
+        `${CUSTOMERS_API_URL}?**`,
+        { fixture: 'customers' }
+      ).as('getCustomer');
+      cy.setCookie('cookieConsent', 'accepted')
+      cy.visit('/')
+
+      cy.contains('button', 'Prev')
+        .should('be.visible')
+        .should('have.attr', 'disabled')
+      cy.contains('button', 'Next')
+        .should('be.visible')
+        .should('have.attr', 'disabled')
     })
 
     context('Two page scenarios', () => {
