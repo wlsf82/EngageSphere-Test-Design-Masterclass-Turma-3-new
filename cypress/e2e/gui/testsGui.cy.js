@@ -90,6 +90,21 @@ describe('Validate the GUI', () => {
       cy.get('#loading').should('be.visible')
     })
 
+    context('Theme scenarios', () => {
+      it('Change to dark mode', () => {
+        cy.get('[aria-label="theme light activated"]').click()
+
+        cy.get('[aria-label="theme dark activated"]').should('be.visible')
+      })
+
+      it('Return to light mode', () => {
+        cy.get('[aria-label="theme light activated"]').click()
+        cy.get('[aria-label="theme dark activated"]').click()
+
+        cy.get('[aria-label="theme light activated"]').should('be.visible')
+      })
+    })
+
     it('Check limit on localstorage', () => {
       cy.get('[name="pagination-limit"]').select('50')
       cy.getAllLocalStorage().then((localStorage) => {
