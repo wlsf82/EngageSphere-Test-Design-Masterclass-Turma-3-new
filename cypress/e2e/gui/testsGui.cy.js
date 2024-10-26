@@ -77,10 +77,10 @@ describe('Validate the GUI', () => {
   it('Show the customer address', () => {
     cy.contains('button', 'View').click()
     cy.contains('Show address').click()
-    cy.contains('988 Kimberly Fort Apt. 921').should('be.visible')
-    cy.contains('Lake Tracy').should('be.visible')
-    cy.contains('Connecticut').should('be.visible')
-    cy.contains('07115').should('be.visible')
+    cy.contains('14135 Kari Garden Suite 427').should('be.visible')
+    cy.contains('Mooreshire').should('be.visible')
+    cy.contains('Nevada').should('be.visible')
+    cy.contains('64043').should('be.visible')
     cy.contains('United States of America').should('be.visible')
   })
 
@@ -88,7 +88,7 @@ describe('Validate the GUI', () => {
     cy.get('[data-testid="size-filter"]').select('Medium')
     cy.get('[data-testid="industry-filter"]').select('Retail')
     cy.wait('@getCustomers')
-    cy.get('[aria-label="View company: Jacobs Co"]').click()
+    cy.get('[aria-label="View company: Littel Co"]').click()
     cy.contains("Company ID").should('be.visible')
     cy.contains("Back").click()
 

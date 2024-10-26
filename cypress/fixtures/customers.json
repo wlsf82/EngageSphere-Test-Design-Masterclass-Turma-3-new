@@ -1,19 +1,22 @@
 {
     "customers": [
         {
-            "id": 1,
-            "name": "Jacobs Co",
-            "employees": 99,
+            "id": 6,
+            "name": "Littel Co",
+            "employees": 10000,
             "industry": "Logistics",
-            "contactInfo": null,
+            "contactInfo": {
+                "name": "Selena",
+                "email": "Selena.Gleichner7@gmail.com"
+            },
             "address": {
-                "street": "988 Kimberly Fort Apt. 921",
-                "city": "Lake Tracy",
-                "state": "Connecticut",
-                "zipCode": "07115",
+                "street": "14135 Kari Garden Suite 427",
+                "city": "Mooreshire",
+                "state": "Nevada",
+                "zipCode": "64043",
                 "country": "United States of America"
             },
-            "size": "Small"
+            "size": "Large Enterprise"
         }
     ],
     "pageInfo": {

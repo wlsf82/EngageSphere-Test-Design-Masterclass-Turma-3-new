@@ -1,0 +1,18 @@
+{
+    "customers": [
+        {
+            "id": 19,
+            "name": "Hahn Group",
+            "employees": 4462,
+            "industry": "Finance",
+            "contactInfo": null,
+            "address": null,
+            "size": "Enterprise"
+        }
+    ],
+    "pageInfo": {
+        "currentPage": 1,
+        "totalPages": 1,
+        "totalCustomers": 50
+    }
+}
