@@ -214,6 +214,14 @@ describe('Validate the GUI', () => {
       });
     })
 
+    it('Download CSV', () => {
+      cy.readFile('cypress/downloads/customersReference.csv', 'utf-8').then((csvReference) => {
+        cy.readFile('cypress/downloads/customers.csv', 'utf-8').then((csvDownload) => {
+          expect(csvDownload).to.equal(csvReference);
+        });
+      });
+    })
+
     it('Show the customer address', () => {
       cy.contains('button', 'View').click()
       cy.contains('Show address').click()
