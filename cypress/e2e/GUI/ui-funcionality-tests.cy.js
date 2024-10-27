@@ -20,13 +20,11 @@ describe('EngageSphere', () => {
   });
 
   it('Should return to the customer list after clicking back', () => {
-    cy.get('button[aria-label^="View company:"]')
-      .first()
-      .click();
+    cy.contains('button', 'View')
+      .click()
     cy.get('[class^="CustomerDetail"] h2')
       .should('be.visible');
-    cy.get('button')
-      .contains('Back')
+    cy.contains('button', 'Back')
       .click();
     cy.get('[data-testid="table"]')
       .should('be.visible');
