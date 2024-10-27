@@ -22,7 +22,13 @@ Read the following [doc](./docs/TestEnvironment.md) to install and start the bac
 
 ## Test cases
 
-Read the following [doc](./docs/TestCases.md) to get a list of test cases.
+#### Running Cypress
+
+Open a Open a new terminal, go to the root of this repo and:
+
+```sh
+npm install 
+```
 
 ___
 
