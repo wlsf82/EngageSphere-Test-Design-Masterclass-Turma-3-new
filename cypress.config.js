@@ -5,7 +5,6 @@ module.exports = defineConfig({
     API_URL: 'http://localhost:3001',
   },
   e2e: {
-    baseUrl: 'http://localhost:3000',
-    specPattern: 'cypress/e2e/**/*.js'
+    baseUrl: 'http://localhost:3000'
   },
 });

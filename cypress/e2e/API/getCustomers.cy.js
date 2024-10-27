@@ -1,7 +1,7 @@
 const API_URL = Cypress.env('API_URL')
 const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
 
-describe('API Test - Return customers', () => {
+describe('EngageSphere', () => {
   it('Should return a list of customers', () => {
     cy.request('GET', CUSTOMERS_API_URL)
       .then(({status, body}) => {
