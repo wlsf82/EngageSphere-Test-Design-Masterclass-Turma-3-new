@@ -37,6 +37,7 @@ describe('EngageSphere gui test cases', () => {
       cy.get('footer')
        .should('be.visible')
        .contains('Copyright 2024 - Talking About Testing')
+
       cy.get('a[href="https://hotmart.com/pt-br/club/cypress-playground-ate-a-nuvem"]')
        .should('have.text', 'Hotmart')
       cy.get('a[href="https://udemy.com/user/walmyr" ]')
@@ -55,6 +56,7 @@ describe('EngageSphere gui test cases', () => {
     it('Renders the "Hi Joe" greeting when name is provided *', () => {
       cy.get('input[id=name]')
        .type('Joe')
+
        cy.contains('h2', 'Hi Joe')
        .should('be.visible')
     })
@@ -63,8 +65,10 @@ describe('EngageSphere gui test cases', () => {
       cy.get('h1')
        .should('be.visible')
        .contains('EngageSphere')
+
       cy.get('button[class^=ThemeToggle_button]')
        .should('be.visible')
+       
       cy.get('#name')
        .should('be.visible')
     })
@@ -160,5 +164,26 @@ describe('EngageSphere gui test cases', () => {
       .contains('Number of employees').should('not.be.visible')
       cy.get('th')
       .contains('Size').should('not.be.visible')
-    });    
-  });
+    })
+
+    it('Shows the bug',() => {
+      cy.get('input[id=name]')
+       .type('Joe')
+      cy.contains('h2', 'Hi Joe')
+       .should('be.visible')
+      cy.get('select[data-testid="size-filter"]')
+       .select('Small')
+      cy.get('select[data-testid="industry-filter"]')
+        .select('Retail')
+
+      cy.get('select[data-testid="size-filter"]')
+        .should('be.visible')
+        .select('All')
+      cy.get('select[data-testid="industry-filter"]')
+         .should('be.visible')
+         .select('All')
+
+      cy.get('input[id=name]')
+       .should('be.enabled')
+    }) 
+  })
