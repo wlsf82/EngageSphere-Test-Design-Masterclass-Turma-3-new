@@ -9,13 +9,11 @@ describe('EngageSphere', () => {
   it('Should maintain filters when returning from customer details', () => {
     cy.get('[data-testid="size-filter"]')
       .select('Small');
-    cy.get('button[aria-label^="View company:"]')
-      .first()
+    cy.contains('button', 'View')
       .click()
     cy.get('[class^="CustomerDetail"] h2')
       .should('be.visible');
-    cy.get('button')
-      .contains('Back')
+      cy.contains('button', 'Back')
       .click();
     cy.get('[data-testid="size-filter"]')
       .should('have.value', 'Small');
