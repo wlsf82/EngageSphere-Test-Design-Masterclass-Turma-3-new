@@ -71,7 +71,7 @@ describe('EngageSphere', () => {
   it('Should open and close the messenger', () => {
     cy.get('[aria-label="Open messenger"]')
       .click();
-    cy.contains('[class^="Messenger_header"] h2', 'How can we help you?')
+    cy.contains('h2', 'How can we help you?')
       .should('be.visible');
     cy.get('[aria-label="Close messenger"]')
       .click();
