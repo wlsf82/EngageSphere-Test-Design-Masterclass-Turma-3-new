@@ -81,14 +81,14 @@ describe('EngageSphere', () => {
 
   it('Should ensures that all messenger fields are mandatory and that the first one is focused', () => {
     cy.get('[aria-label="Open messenger"]').click();
-    cy.getByClassStartsWith('Messenger_form')
+    cy.getByClassThatStartsWith('Messenger_form')
       .find('input[type="text"]')
       .should('be.focused')
       .and('have.attr', 'required');
-    cy.getByClassStartsWith('Messenger_form')
+    cy.getByClassThatStartsWith('Messenger_form')
       .find('input[type="email"]')
       .should('have.attr', 'required');
-    cy.getByClassStartsWith('Messenger_form')
+    cy.getByClassThatStartsWith('Messenger_form')
       .find('textarea')
       .should('have.attr', 'required');
   });
@@ -125,14 +125,14 @@ describe('EngageSphere', () => {
       .click();
     cy.get('[aria-label="Open messenger"]')
       .click();
-    cy.getByClassStartsWith('Messenger_form')
+    cy.getByClassThatStartsWith('Messenger_form')
       .find('input[type="text"]')
       .should('be.focused')
       .and('have.value', '');
-    cy.getByClassStartsWith('Messenger_form')
+    cy.getByClassThatStartsWith('Messenger_form')
       .find('input[type="email"]')
       .should('have.value', '');
-    cy.getByClassStartsWith('Messenger_form')
+    cy.getByClassThatStartsWith('Messenger_form')
       .find('textarea')
       .should('have.value', '');
   });

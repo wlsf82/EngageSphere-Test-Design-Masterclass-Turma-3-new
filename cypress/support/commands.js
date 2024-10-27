@@ -1,3 +1,3 @@
-Cypress.Commands.add('getByClassStartsWith', (classPrefix) => {
+Cypress.Commands.add('getByClassThatStartsWith', (classPrefix) => {
   return cy.get(`[class^="${classPrefix}"]`);
 });
