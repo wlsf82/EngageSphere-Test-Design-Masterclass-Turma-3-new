@@ -175,6 +175,26 @@ describe('Validate the GUI', () => {
     });
   });
 
+  context('Validate the delay scenario', () => {
+    beforeEach(() => {
+      const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`;
+      cy.intercept(
+        'GET',
+        `${CUSTOMERS_API_URL}?**`,
+        {
+          delay: 1000,
+          fixture: 'customers'
+        }
+      ).as('getCustomers');
+      cy.setCookie('cookieConsent', 'accepted');
+      cy.visit('/');
+    });
+
+    it('Check the load element', () => {
+      cy.get('#loading').should('be.visible');
+    });
+  });
+
   context('Validate the customer positive scenarios', () => {
     beforeEach(() => {
       const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`;
@@ -185,10 +205,6 @@ describe('Validate the GUI', () => {
       ).as('getCustomers');
       cy.setCookie('cookieConsent', 'accepted');
       cy.visit('/');
-    });
-
-    it('Check the load element', () => {
-      cy.get('#loading').should('be.visible');
     });
 
     context('Theme scenarios', () => {
