@@ -6,7 +6,9 @@
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && npm start",
-    "start:server": "cd backend && npm start"
+    "start:server": "cd backend && npm start",
+    "cy:api": "npx cypress run --env grepTags=api",
+    "cy:gui":"npx cypress run --env grepTags=gui"
   },
   "repository": {
     "type": "git",

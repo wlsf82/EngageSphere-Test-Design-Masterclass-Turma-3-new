@@ -23,3 +23,10 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('setCookieSession', (value) => {
+    cy.session(value ,() => {
+        cy.visit(Cypress.env('baseUrl'))
+        cy.setCookie('cookieConsent', value)
+    })
+})
