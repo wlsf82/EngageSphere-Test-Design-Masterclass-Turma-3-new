@@ -48,14 +48,14 @@ describe('EngageSphere', () => {
   });
 
   it('Should displays the greeting "Hi, there" when no name is given', () => {
-    cy.contains('[data-testid="table"] h2', 'Hi there!')
+    cy.contains('h2', 'Hi there!')
       .should('be.visible');
   });
 
   it('Should displays the greeting "Hi, Joe" when the name Joe is given', () => {
     cy.get('input[type="text"]')
       .type('Joe');
-    cy.contains('[data-testid="table"] h2', 'Hi Joe!')
+    cy.contains('h2', 'Hi Joe!')
       .should('be.visible');
   });
 
