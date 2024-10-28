@@ -1,0 +1,168 @@
+{
+    "customers": [
+    {
+        "id": 0,
+        "name": "Test 1",
+        "employees": 99,
+        "industry": "Test Industry 1",
+        "contactInfo": null,
+        "address": {
+            "street": "Test Street 1",
+            "city": "Test City 1",
+            "state": "Test State 1",
+            "zipCode": "00001",
+            "country": "Test Country 1" 
+        },
+        "size": "Small"          
+    },
+    {
+        "id": 1,
+        "name": "Test 2",
+        "employees": 999,
+        "industry": "Test Industry 2",
+        "contactInfo": null,
+        "address": {
+            "street": "Test Street 2",
+            "city": "Test City 2",
+            "state": "Test State 2",
+            "zipCode": "00002",
+            "country": "Test Country 2" 
+        },
+        "size": "Medium"          
+    },
+    {
+        "id": 2,
+        "name": "Test 3",
+        "employees": 9999,
+        "industry": "Test Industry 3",
+        "contactInfo": {
+            "name": "Contact Name Test 3",
+            "email": "emailtest3@example.com"
+        },
+        "address": {
+            "street": "Test Street 3",
+            "city": "Test City 3",
+            "state": "Test State 3",
+            "zipCode": "00003",
+            "country": "Test Country 3" 
+        },
+        "size": "Enterprise"          
+    },
+    {
+        "id": 3,
+        "name": "Test 4",
+        "employees": 49999,
+        "industry": "Test Industry 4",
+        "contactInfo": {
+            "name": "Contact Name Test 4",
+            "email": "emailtest4@example.com"
+        },
+        "address": {
+            "street": "Test Street 4",
+            "city": "Test City 4",
+            "state": "Test State 4",
+            "zipCode": "00004",
+            "country": "Test Country 4" 
+        },
+        "size": "Large Enterprise"          
+    },
+    {
+        "id": 4,
+        "name": "Test 5",
+        "employees": 50000,
+        "industry": "Test Industry 5",
+        "contactInfo": {
+            "name": "Contact Name Test 5",
+            "email": "emailtest5@example.com"
+        },
+        "address": {
+            "street": "Test Street 5",
+            "city": "Test City 5",
+            "state": "Test State 5",
+            "zipCode": "00005",
+            "country": "Test Country 5" 
+        },
+        "size": "Very Large Enterprise"
+    },
+    {
+        "id": 5,
+        "name": "Test 6",
+        "employees": 10,
+        "industry": "Test Industry 6",
+        "contactInfo": null,
+        "address": {
+            "street": "Test Street 6",
+            "city": "Test City 6",
+            "state": "Test State 6",
+            "zipCode": "00006",
+            "country": "Test Country 6" 
+        },
+        "size": "Small"          
+    },
+    {
+        "id": 6,
+        "name": "Test 7",
+        "employees": 100,
+        "industry": "Test Industry 7",
+        "contactInfo": null,
+        "address": {
+            "street": "Test Street 7",
+            "city": "Test City 7",
+            "state": "Test State 7",
+            "zipCode": "00007",
+            "country": "Test Country 7" 
+        },
+        "size": "Medium"          
+    },
+    {
+        "id": 7,
+        "name": "Test 8",
+        "employees": 1000,
+        "industry": "Test Industry 8",
+        "contactInfo": null,
+        "address": {
+            "street": "Test Street 8",
+            "city": "Test City 8",
+            "state": "Test State 8",
+            "zipCode": "00008",
+            "country": "Test Country 8" 
+        },
+        "size": "Enterprise"          
+    },
+    {
+        "id": 8,
+        "name": "Test 9",
+        "employees": 10000,
+        "industry": "Test Industry 9",
+        "contactInfo": null,
+        "address": {
+            "street": "Test Street 9",
+            "city": "Test City 9",
+            "state": "Test State 9",
+            "zipCode": "00009",
+            "country": "Test Country 9" 
+        },
+        "size": "Large Enterprise"          
+    },
+    {
+        "id": 9,
+        "name": "Test 10",
+        "employees": 50000,
+        "industry": "Test Industry 10",
+        "contactInfo": null,
+        "address": {
+            "street": "Test Street 10",
+            "city": "Test City 10",
+            "state": "Test State 10",
+            "zipCode": "00010",
+            "country": "Test Country 10" 
+        },
+        "size": "Very Large Enterprise"          
+    }
+],
+    "pageInfo": {
+        "currentPage": 1,
+        "totalPages": 1,
+        "totalRecords": 10
+    }
+}
