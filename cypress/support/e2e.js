@@ -14,10 +14,9 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
 import 'cypress-axe'
 import 'cypress-each'
+import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-require('@cypress/skip-test/support')
