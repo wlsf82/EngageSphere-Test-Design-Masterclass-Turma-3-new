@@ -1,6 +1,7 @@
 import '@testing-library/cypress/add-commands'
-import '../../src/index.css'
+import { mount } from 'cypress/react18';
 
-Cypress.Commands.add('getByClassStartsWith', (classPart) => {
-  cy.get(`[class^="${classPart}"]`);
-});
+import '../../src/index.css'
+import '../../../cypress/support/commands'
+
+Cypress.Commands.add('mount', mount);

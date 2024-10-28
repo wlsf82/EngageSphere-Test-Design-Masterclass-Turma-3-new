@@ -1,9 +1,9 @@
-import { mount } from 'cypress/react18';
 import Footer from '.'
 
 describe('Footer', () => {
   it('renders the footer with the right text and links', () => {
-    mount(<Footer />);
+    cy.mount(<Footer />);
+    
     cy.contains('Copyright 2024 - Talking About Testing').should('be.visible');
     cy.contains('Hotmart')
       .should('be.visible')

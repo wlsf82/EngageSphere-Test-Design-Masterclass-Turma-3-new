@@ -21,20 +21,23 @@ describe('Customers', () => {
         `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`,
         (req) => {
           req.reply((res) => {
-            res.setDelay(4000);
+            res.setDelay(1000);
           });
         }
       ).as('getDelayedCustomers');
+
       cy.visit('/');
       cy.wait('@getDelayedCustomers');
+
       cy.contains('p', 'Loading...').should('be.visible');
     });
 
     context('Empty State', () => {
       beforeEach(() => {
         cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`, {
-          fixture: 'customers/emptyCustomers',
+          fixture: 'customers/empty',
         }).as('getEmptyCustomers');
+
         cy.visit('/');
         cy.wait('@getEmptyCustomers');
       });
@@ -58,18 +61,18 @@ describe('Customers', () => {
         message: 'Hello, I need help with something.',
       };
 
-      cy.getByClassStartsWith('Messenger_openCloseButton').click();
+      cy.getByClassThatStartsWith('Messenger_openCloseButton').click();
       cy.get('#messenger-name').type(messengerData.name);
       cy.get('#email').type(messengerData.email);
       cy.get('#message').type(messengerData.message);
       cy.clock();
-      cy.getByClassStartsWith('Messenger_sendButton').click();
+      cy.getByClassThatStartsWith('Messenger_sendButton').click();
 
-      cy.getByClassStartsWith('Messenger_success')
+      cy.getByClassThatStartsWith('Messenger_success')
         .should('be.visible')
         .and('have.text', 'Your message has been sent.');
       cy.tick(3000);
-      cy.getByClassStartsWith('Messenger_success').should('not.exist');
+      cy.getByClassThatStartsWith('Messenger_success').should('not.exist');
     });
   });
 
@@ -83,11 +86,13 @@ describe('Customers', () => {
       cy.intercept(
         'GET',
         `${CUSTOMERS_URL}?page=1&limit=10&size=${clientFilterData.size}&industry=${clientFilterData.industry}`,
-        { fixture: 'customers/smallTechnologyCustomers' }
+        { fixture: 'customers/smallTechnology' }
       ).as('getSmallTechnologyCustomers');
+
       cy.findByTestId('size-filter').select(clientFilterData.size);
       cy.findByTestId('industry-filter').select(clientFilterData.industry);
       cy.contains('button', 'View').click();
+
       cy.contains('button', 'Back').click();
 
       cy.findByTestId('size-filter').should('have.value', clientFilterData.size);
@@ -105,8 +110,9 @@ describe('Customers', () => {
     context('Filter by size', () => {
       it('filters the customers by small size', () => {
         cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=Small&industry=All`, {
-          fixture: 'customers/smallCustomers',
+          fixture: 'customers/small',
         }).as('getSmallCustomers');
+
         cy.findByTestId('size-filter').select('Small');
         cy.wait('@getSmallCustomers');
 
@@ -115,8 +121,9 @@ describe('Customers', () => {
 
       it('filters the customers by medium size', () => {
         cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=Medium&industry=All`, {
-          fixture: 'customers/mediumCustomers',
+          fixture: 'customers/medium',
         }).as('getMediumCustomers');
+
         cy.findByTestId('size-filter').select('Medium');
         cy.wait('@getMediumCustomers');
 
@@ -128,9 +135,10 @@ describe('Customers', () => {
           'GET',
           `${CUSTOMERS_URL}?page=1&limit=10&size=Enterprise&industry=All`,
           {
-            fixture: 'customers/enterpriseCustomers',
+            fixture: 'customers/enterprise',
           }
         ).as('getLargeCustomers');
+
         cy.findByTestId('size-filter').select('Enterprise');
         cy.wait('@getLargeCustomers');
 
@@ -142,9 +150,10 @@ describe('Customers', () => {
           'GET',
           `${CUSTOMERS_URL}?page=1&limit=10&size=Large%20Enterprise&industry=All`,
           {
-            fixture: 'customers/largeEnterpriseCustomers',
+            fixture: 'customers/largeEnterprise',
           }
         ).as('getLargeEnterpriseCustomers');
+
         cy.findByTestId('size-filter').select('Large Enterprise');
         cy.wait('@getLargeEnterpriseCustomers');
 
@@ -156,9 +165,10 @@ describe('Customers', () => {
           'GET',
           `${CUSTOMERS_URL}?page=1&limit=10&size=Very%20Large%20Enterprise&industry=All`,
           {
-            fixture: 'customers/veryLargeEnterpriseCustomers',
+            fixture: 'customers/veryLargeEnterprise',
           }
         ).as('getVeryLargeEnterpriseCustomers');
+
         cy.findByTestId('size-filter').select('Very Large Enterprise');
         cy.wait('@getVeryLargeEnterpriseCustomers');
 
@@ -168,8 +178,9 @@ describe('Customers', () => {
       it('filters the customers by all sizes', () => {
         cy.findByTestId('size-filter').select('Small');
         cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`, {
-          fixture: 'customers/allCustomers',
+          fixture: 'customers/all',
         }).as('getAllCustomers');
+
         cy.findByTestId('size-filter').select('All');
         cy.wait('@getAllCustomers');
 
@@ -183,9 +194,10 @@ describe('Customers', () => {
           'GET',
           `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=Logistics`,
           {
-            fixture: 'customers/logisticsCustomers',
+            fixture: 'customers/logistics',
           }
         ).as('getLogisticsCustomers');
+
         cy.findByTestId('industry-filter').select('Logistics');
         cy.wait('@getLogisticsCustomers');
 
@@ -194,8 +206,9 @@ describe('Customers', () => {
 
       it('filters the customers by retail industry', () => {
         cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=Retail`, {
-          fixture: 'customers/retailCustomers',
+          fixture: 'customers/retail',
         }).as('getRetailCustomers');
+
         cy.findByTestId('industry-filter').select('Retail');
         cy.wait('@getRetailCustomers');
 
@@ -207,9 +220,10 @@ describe('Customers', () => {
           'GET',
           `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=Technology`,
           {
-            fixture: 'customers/technologyCustomers',
+            fixture: 'customers/technology',
           }
         ).as('getTechnologyCustomers');
+
         cy.findByTestId('industry-filter').select('Technology');
         cy.wait('@getTechnologyCustomers');
 
@@ -218,8 +232,9 @@ describe('Customers', () => {
 
       it('filters the customers by HR industry', () => {
         cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=HR`, {
-          fixture: 'customers/HRCustomers',
+          fixture: 'customers/HR',
         }).as('getHRCustomers');
+
         cy.findByTestId('industry-filter').select('HR');
         cy.wait('@getHRCustomers');
 
@@ -231,9 +246,10 @@ describe('Customers', () => {
           'GET',
           `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=Finance`,
           {
-            fixture: 'customers/financeCustomers',
+            fixture: 'customers/finance',
           }
         ).as('getFinanceCustomers');
+
         cy.findByTestId('industry-filter').select('Finance');
         cy.wait('@getFinanceCustomers');
 
@@ -243,8 +259,9 @@ describe('Customers', () => {
       it('filters the customers by all industries', () => {
         cy.findByTestId('industry-filter').select('Technology');
         cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`, {
-          fixture: 'customers/allCustomers',
+          fixture: 'customers/all',
         }).as('getAllCustomers');
+
         cy.findByTestId('industry-filter').select('All');
         cy.wait('@getAllCustomers');
 
@@ -272,14 +289,15 @@ describe('Accessibility', () => {
     });
 
     it('finds no a11y issues in the messenger form', () => {
-      cy.getByClassStartsWith('Messenger_openCloseButton').click();
+      cy.getByClassThatStartsWith('Messenger_openCloseButton').click();
       cy.checkA11y();
     });
   });
 
   context('Dark Mode', () => {
     beforeEach(() => {
-      cy.getByClassStartsWith('ThemeToggle_button').click();
+      cy.getByClassThatStartsWith('ThemeToggle_button').click();
+      cy.get('[data-theme="dark"]').should('exist');
     });
 
     it('finds no a11y issues in dark mode in the customer table', () => {
@@ -292,7 +310,7 @@ describe('Accessibility', () => {
     });
 
     it('finds no a11y issues in the messenger form', () => {
-      cy.getByClassStartsWith('Messenger_openCloseButton').click();
+      cy.getByClassThatStartsWith('Messenger_openCloseButton').click();
       cy.checkA11y();
     });
   });

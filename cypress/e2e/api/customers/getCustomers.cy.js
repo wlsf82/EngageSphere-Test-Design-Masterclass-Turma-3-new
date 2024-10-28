@@ -27,6 +27,7 @@ describe('Get Customers', () => {
     }).then(({ status, body }) => {
       expect(status).to.eq(200);
       expect(body.customers.length).to.eq(10);
+      expect(body.pageInfo.currentPage).to.eq(2);
     });
   });
 
@@ -134,6 +135,28 @@ describe('Get Customers', () => {
         expect(body.error).to.eq(
           'Unsupported industry value. Supported values are All, Logistics, Retail, Technology, HR, and Finance.'
         );
+      });
+    });
+
+    it('handles request with page = 0', () => {
+      cy.request({
+        method: 'GET',
+        url: `${API_URL}/customers?page=0`,
+        failOnStatusCode: false,
+      }).then(({ status, body }) => {
+        expect(status).to.eq(400);
+        expect(body.error).to.eq('Invalid page or limit. Both must be positive numbers.');
+      });
+    });
+
+    it('handles request with limit = 0', () => {
+      cy.request({
+        method: 'GET',
+        url: `${API_URL}/customers?limit=0`,
+        failOnStatusCode: false,
+      }).then(({ status, body }) => {
+        expect(status).to.eq(400);
+        expect(body.error).to.eq('Invalid page or limit. Both must be positive numbers.');
       });
     });
   });
