@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Cliente 1",
+        "size": "Very Large Enterprise"
+    },
+    {
+        "name": "Cliente 2",
+        "size": "Small Business"
+    },
+    {
+        "name": "Cliente 3",
+        "size": "Very Large Enterprise"
+    },
+    {
+        "name": "Cliente 4",
+        "size": "Medium Business"
+    },
+    {
+        "name": "Lowe Co",
+        "size": "Very Large Enterprise"
+    }
+]
