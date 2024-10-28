@@ -1,11 +1,11 @@
 describe('Teste E2E EngageSphere', () => {
     beforeEach(() => {
-        cy.visit('/')
         cy.setCookie('cookieConsent', 'accepted')
+        cy.visit('/')
     })
 
     it('Retorna à lista de clientes ao clicar no botão "Voltar"', () => {
-        cy.contains('button', 'View').click()
+        cy.contains('button', 'View').should('be.visible').click()
         cy.contains('button', 'Back').should('be.visible').click()
         cy.contains('Below is our customer list.').should('be.visible')
     })
@@ -46,21 +46,21 @@ describe('Teste E2E EngageSphere', () => {
         cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible').click()
         cy.get('h2').should('contain', 'How can we help you?')
         cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible').click()
+        cy.get('h2').should('not.contain', 'How can we help you?')
     })
 
-    it('Garante que todos os campos do messenger são obrigatórios', () => {
+    it('Garante que todos os campos do messenger são obrigatórios e que o primeiro está focado', () => {
         cy.get('button[class^="Messenger_openCloseButton"]').click()
         cy.get('h2').should('contain', 'How can we help you?')
+        cy.get('#messenger-name').should('be.focused')
         cy.get('#messenger-name').should('have.attr', 'required')
         cy.get('#email').should('have.attr', 'required')
         cy.get('#message').should('have.attr', 'required')
     })
 
     it('Mostra e oculta uma mensagem de sucesso ao enviar o formulário do messenger com sucesso', () => {
-        cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible')
-        cy.get('button[class^="Messenger_openCloseButton"]').click()
-        cy.get('div[class^="Messenger_box"]').should('be.visible')
-        cy.get('div[class^="Messenger_box"]').click()
+        cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible').click()
+        cy.get('div[class^="Messenger_box"]').should('be.visible').click()
         cy.get('h2').should('contain', 'How can we help you?')
         cy.get('input[id="messenger-name"]').type('Seu Madruga')
         cy.get('#email').type('madruguinha@gmail.com')
@@ -75,10 +75,7 @@ describe('Teste E2E EngageSphere', () => {
     })
 
     it('Limpa todos os campos do formulário do messenger ao preenchê-los, fechar o messenger e abri-lo novamente', () => {
-        cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible')
-        cy.get('button[class^="Messenger_openCloseButton"]').click()
-        cy.get('div[class^="Messenger_box"]').should('be.visible')
-        cy.get('div[class^="Messenger_box"]').click()
+        cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible').click()
         cy.get('input[id="messenger-name"]').type('Seu Madruga')
         cy.get('#email').type('madruguinha@gmail.com')
         cy.get('#message').type('chiforinfola')
