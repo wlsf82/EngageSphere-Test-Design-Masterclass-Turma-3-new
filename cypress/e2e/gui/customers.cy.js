@@ -269,6 +269,99 @@ describe('Customers', () => {
       });
     });
   });
+
+  context('Details', () => {
+    it('renders the contact details of a customer', () => {
+      cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`, {
+        fixture: 'customers/withAddress',
+      }).as('getCustomerWithAddress');
+
+      cy.visit('/');
+      cy.wait('@getCustomerWithAddress');
+      cy.contains('button', 'View').click();
+
+      cy.fixture('customers/withAddress').then((customer) => {
+        cy.contains('p', customer.customers[0].contactInfo.name).should('be.visible');
+        cy.contains('p', customer.customers[0].contactInfo.email).should('be.visible');
+        cy.contains('p', customer.customers[0].id).should('be.visible');
+        cy.contains('p', customer.customers[0].employees).should('be.visible');
+        cy.contains('p', customer.customers[0].size).should('be.visible');
+        cy.contains('p', customer.customers[0].industry).should('be.visible');
+      });
+    });
+
+    it('shows and hides the customer address', () => {
+      cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`, {
+        fixture: 'customers/withAddress',
+      }).as('getCustomerWithAddress');
+
+      cy.visit('/');
+      cy.wait('@getCustomerWithAddress');
+      cy.contains('button', 'View').click();
+
+      cy.getByClassThatStartsWith('CustomerDetails_showAddressBtn').click();
+
+      cy.contains('h3', 'Address').should('be.visible');
+      cy.fixture('customers/withAddress').then((customer) => {
+        cy.contains('p', customer.customers[0].address.street).should('be.visible');
+        cy.contains('p', customer.customers[0].address.city).should('be.visible');
+        cy.contains('p', customer.customers[0].address.state).should('be.visible');
+        cy.contains('p', customer.customers[0].address.zipCode).should('be.visible');
+        cy.contains('p', customer.customers[0].address.country).should('be.visible');
+      });
+
+      cy.getByClassThatStartsWith('CustomerDetails_hideAddressBtn').click();
+
+      cy.contains('h3', 'Address').should('not.exist');
+    });
+  });
+
+  context('CSV', () => {
+    it('downloads a CSV file with the customers data', () => {
+      cy.intercept('GET', `${CUSTOMERS_URL}?page=1&limit=10&size=All&industry=All`, {
+        fixture: 'customers/all',
+      }).as('getAllCustomers');
+
+      cy.visit('/');
+      cy.wait('@getAllCustomers');
+
+      cy.contains('button', 'Download CSV').click();
+
+      cy.readFile('cypress/downloads/customers.csv').then((csv) => {
+        expect(csv).to.include(
+          'ID,Company_Name,Number_of_Employees,Size,Industry,Contact_Name,Contact_Email,Street,City,State,Zip_Code,Country'
+        );
+        cy.fixture('customers/all').then((customers) => {
+          customers.customers.forEach((customer) => {
+            expect(csv).to.include(
+              `"${customer.id}","${customer.name}","${customer.employees}","${customer.size}","${customer.industry}","${customer.contactInfo?.name || ''}","${customer.contactInfo?.email || ''}","${customer.address?.street || ''}","${customer.address?.city || ''}","${customer.address?.state || ''}","${customer.address?.zipCode || ''}","${customer.address?.country || ''}"`
+            );
+          });
+        });
+      });
+    });
+  });
+});
+
+describe('Cookies', () => {
+  beforeEach(() => {
+    cy.clearCookies();
+    cy.visit('/');
+  });
+
+  it('accepts the cookie consent', () => {
+    cy.contains('button', 'Accept').click();
+
+    cy.getByClassThatStartsWith('CookieConsent_banner').should('not.exist');
+    cy.getCookie('cookieConsent').should('have.property', 'value', 'accepted');
+  });
+
+  it('rejects the cookie consent', () => {
+    cy.contains('button', 'Decline').click();
+
+    cy.getByClassThatStartsWith('CookieConsent_banner').should('not.exist');
+    cy.getCookie('cookieConsent').should('have.property', 'value', 'declined');
+  });
 });
 
 describe('Accessibility', () => {
