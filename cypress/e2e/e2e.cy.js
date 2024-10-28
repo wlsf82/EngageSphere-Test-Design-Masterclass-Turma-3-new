@@ -52,12 +52,8 @@ describe('Teste E2E EngageSphere', () => {
         cy.get('button[class^="Messenger_openCloseButton"]').click()
     })
 
-    it('Garante que todos os campos do messenger são obrigatórios e que o primeiro está focado', () => {
+    it('Garante que todos os campos do messenger são obrigatórios', () => {
         cy.get('button[class^="Messenger_openCloseButton"]').click()
-        cy.get('div[class^="Messenger_box"]').click()
-        //Não consegui verificar se o foco está nesse campo, utilizei o focus forçado para passar esse teste
-        //Tentei usando .should('be.focused') e não rolou
-        cy.get('#messenger-name').focus().should('have.focus')
         cy.get('h2').should('contain', 'How can we help you?')
         cy.get('#messenger-name').should('have.attr', 'required')
         cy.get('#email').should('have.attr', 'required')
@@ -74,13 +70,12 @@ describe('Teste E2E EngageSphere', () => {
         cy.get('#email').type('madruguinha@gmail.com')
         cy.get('#message').type('chiforinfola')
         cy.get('button[type="submit"]').click()
-        cy.get('div[role="alert"].Messenger_success__GOoJk')
+        cy.contains('div[role="alert"]', 'Your message has been sent.')
             .should('be.visible')
-            .and('contain', 'Your message has been sent.')
         cy.clock()
         cy.get('button[class^="Messenger_openCloseButton"]').click()
         cy.tick(3000)
-        cy.get('div[role="alert"].Messenger_success__GOoJk').should('not.exist')
+        cy.get('div[role="alert"]').should('not.exist')
     })
 
     it('Limpa todos os campos do formulário do messenger ao preenchê-los, fechar o messenger e abri-lo novamente', () => {
