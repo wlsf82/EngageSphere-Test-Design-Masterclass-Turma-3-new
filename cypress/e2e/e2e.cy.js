@@ -1,13 +1,12 @@
 describe('Teste E2E EngageSphere', () => {
     beforeEach(() => {
         cy.visit('/')
-        cy.contains('button', 'Accept').click();
+        cy.setCookie('cookieConsent', 'accepted')
     })
 
     it('Retorna à lista de clientes ao clicar no botão "Voltar"', () => {
-        cy.get('button[aria-label="View company: Lowe Co"]').click();
-        cy.contains('button', 'Back').should('be.visible')
-        cy.contains('button', 'Back').click();
+        cy.contains('button', 'View').click()
+        cy.contains('button', 'Back').should('be.visible').click()
         cy.contains('Below is our customer list.').should('be.visible')
     })
 
@@ -44,12 +43,9 @@ describe('Teste E2E EngageSphere', () => {
     })
 
     it('Abre e fecha o messenger', () => {
-        cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible')
-        cy.get('button[class^="Messenger_openCloseButton"]').click()
-        cy.get('div[class^="Messenger_box"]').should('be.visible')
-        cy.get('div[class^="Messenger_box"]').click()
+        cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible').click()
         cy.get('h2').should('contain', 'How can we help you?')
-        cy.get('button[class^="Messenger_openCloseButton"]').click()
+        cy.get('button[class^="Messenger_openCloseButton"]').should('be.visible').click()
     })
 
     it('Garante que todos os campos do messenger são obrigatórios', () => {
