@@ -1,5 +1,5 @@
 {
-  "name": "EngageSphere-Test-Design-Masterclass-Turma-3",
+  "name": "EngageSphere-Test-Design-Masterclass-Pedro-Hyvo",
   "version": "1.0.0",
   "description": "Sample project with a Node.js backend and a React frontend.",
   "scripts": {
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/wlsf82/EngageSphere-Test-Design-Masterclass-Turma-3.git"
   },
   "keywords": [],
-  "author": "Walmyr Filho <wlsf82@gmail.com> (https://walmyr.dev)",
+  "author": "Walmyr Filho <wlsf82@gmail.com> (https://walmyr.dev) and Pedro Hyvo <pedrohyvocarvalho@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/wlsf82/EngageSphere-Test-Design-Masterclass-Turma-3/blob/main/README.md",
   "devDependencies": {
