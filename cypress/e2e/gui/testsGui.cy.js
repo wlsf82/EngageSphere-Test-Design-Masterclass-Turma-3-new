@@ -321,7 +321,7 @@ describe('Validate the GUI', () => {
       });
     });
   });
-  context.only('Validate the accessibility scenarios', () => {
+  context('Validate the accessibility scenarios', () => {
     beforeEach(() => {
       cy.setCookie('cookieConsent', 'accepted');
       cy.visit('/');
@@ -332,12 +332,22 @@ describe('Validate the GUI', () => {
     });
     it('Check the accessibility in the customers list on dark mode', () => {
       cy.get('[aria-label="theme light activated"]').click();
+      cy.get('[data-theme="dark"]').should('exist');
       cy.checkA11y();
     });
-    it('Check the accessibility in the customers details on light mode', () => {
-      cy.contains('button', 'View').click();
-      cy.contains('Show address').click();
-      cy.checkA11y();
+    context('Customers details page', () => {
+      beforeEach(() => {
+        cy.contains('button', 'View').click();
+        cy.contains('Show address').click();
+      });
+      it('Check the accessibility in the customers details on light mode', () => {
+        cy.checkA11y();
+      });
+      it('Check the accessibility in the customers details on dark mode', () => {
+        cy.get('[aria-label="theme light activated"]').click();
+        cy.get('[data-theme="dark"]').should('exist');
+        cy.checkA11y();
+      });
     });
   });
 });
