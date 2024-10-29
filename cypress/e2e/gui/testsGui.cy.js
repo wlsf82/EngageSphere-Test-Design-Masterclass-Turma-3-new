@@ -327,11 +327,16 @@ describe('Validate the GUI', () => {
       cy.visit('/');
       cy.injectAxe();
     });
-    it('Check the customers list accessibility on light mode', () => {
+    it('Check the accessibility in the customers list on light mode', () => {
       cy.checkA11y();
     });
-    it('Check the customers list accessibility on dark mode', () => {
+    it('Check the accessibility in the customers list on dark mode', () => {
       cy.get('[aria-label="theme light activated"]').click();
+      cy.checkA11y();
+    });
+    it('Check the accessibility in the customers details on light mode', () => {
+      cy.contains('button', 'View').click();
+      cy.contains('Show address').click();
       cy.checkA11y();
     });
   });
