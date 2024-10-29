@@ -335,6 +335,11 @@ describe('Validate the GUI', () => {
       cy.get('[data-theme="dark"]').should('exist');
       cy.checkA11y();
     });
+    it('Check the accessibility in the messenger button on dark mode', () => {
+      cy.get('[aria-label="theme light activated"]').click();
+      cy.get('[data-theme="dark"]').should('exist');
+      cy.checkA11y('[aria-label="Open messenger"]');
+    });
     context('Customers details page', () => {
       beforeEach(() => {
         cy.contains('button', 'View').click();
