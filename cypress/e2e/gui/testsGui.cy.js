@@ -321,12 +321,17 @@ describe('Validate the GUI', () => {
       });
     });
   });
-  context('Validate the acessibility scenarios', () => {
+  context.only('Validate the accessibility scenarios', () => {
     beforeEach(() => {
+      cy.setCookie('cookieConsent', 'accepted');
       cy.visit('/');
       cy.injectAxe();
     });
-    it('Check the customers list acessibility on light mode', () => {
+    it('Check the customers list accessibility on light mode', () => {
+      cy.checkA11y();
+    });
+    it('Check the customers list accessibility on dark mode', () => {
+      cy.get('[aria-label="theme light activated"]').click();
       cy.checkA11y();
     });
   });
