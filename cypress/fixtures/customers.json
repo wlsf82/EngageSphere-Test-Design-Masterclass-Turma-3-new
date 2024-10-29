@@ -1,0 +1,27 @@
+{
+    "customers": [
+        {
+            "id": 6,
+            "name": "Littel Co",
+            "employees": 10000,
+            "industry": "Logistics",
+            "contactInfo": {
+                "name": "Selena",
+                "email": "Selena.Gleichner7@gmail.com"
+            },
+            "address": {
+                "street": "14135 Kari Garden Suite 427",
+                "city": "Mooreshire",
+                "state": "Nevada",
+                "zipCode": "64043",
+                "country": "United States of America"
+            },
+            "size": "Large Enterprise"
+        }
+    ],
+    "pageInfo": {
+        "currentPage": 1,
+        "totalPages": 1,
+        "totalCustomers": 50
+    }
+}
