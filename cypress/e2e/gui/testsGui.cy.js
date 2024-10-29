@@ -321,4 +321,13 @@ describe('Validate the GUI', () => {
       });
     });
   });
+  context('Validate the acessibility scenarios', () => {
+    beforeEach(() => {
+      cy.visit('/');
+      cy.injectAxe();
+    });
+    it('Check the customers list acessibility on light mode', () => {
+      cy.checkA11y();
+    });
+  });
 });
