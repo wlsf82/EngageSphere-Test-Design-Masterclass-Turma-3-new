@@ -24,6 +24,14 @@ Read the following [doc](./docs/TestEnvironment.md) to install and start the bac
 
 Read the following [doc](./docs/TestCases.md) to get a list of test cases.
 
+
+## Run Cypress tests
+
+To run cypress tests, you will need to run the following command:
+```
+Interactive: npm run cy:open
+Headless: npm test or npm t
+```
 ___
 
-Made with ❤️ by [Walmyr](https://walmyr.dev).
+Made with ❤️ by [Walmyr](https://walmyr.dev) and [Pedro Hyvo]().

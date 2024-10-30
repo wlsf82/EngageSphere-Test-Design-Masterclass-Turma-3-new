@@ -1,23 +1,26 @@
 {
-  "name": "EngageSphere-Test-Design-Masterclass-Turma-3",
+  "name": "EngageSphere-Test-Design-Masterclass-Pedro-Hyvo",
   "version": "1.0.0",
   "description": "Sample project with a Node.js backend and a React frontend.",
   "scripts": {
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && npm start",
-    "start:server": "cd backend && npm start"
+    "start:server": "cd backend && npm start",
+    "cy:open": "cypress open",
+    "test": "cypress run"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wlsf82/EngageSphere-Test-Design-Masterclass-Turma-3.git"
   },
   "keywords": [],
-  "author": "Walmyr Filho <wlsf82@gmail.com> (https://walmyr.dev)",
+  "author": "Walmyr Filho <wlsf82@gmail.com> (https://walmyr.dev) and Pedro Hyvo <pedrohyvocarvalho@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/wlsf82/EngageSphere-Test-Design-Masterclass-Turma-3/blob/main/README.md",
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "cypress": "^13.15.0"
   },
   "browserslist": {
     "production": [
