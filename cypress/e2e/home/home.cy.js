@@ -14,12 +14,18 @@ describe('Home Page -', () => {
   })
 
   context('Customer Details', () => {
-    it('It shows and hides the customer address', () => {
+    it.only('It shows and hides the customer address', () => {
       cy.contains('button', 'View').click()
       cy.contains('h2', 'Customer Details').should('be.visible')
       cy.get('button[class*="CustomerDetails_showAddressBtn"]').click()
       cy.contains('h3', 'Address').should('be.visible')
+      cy.contains('p', '87908 Adkins Islands Apt. 944').should('be.visible')
+      cy.contains('p', 'West Sarah').should('be.visible')
+      cy.contains('p', 'Georgia').should('be.visible')
+      cy.contains('p', '79943').should('be.visible')
+      cy.contains('p', 'United States of America').should('be.visible')
       cy.get('button[class*="CustomerDetails_hideAddressBtn"]').click()
+      cy.contains('h3', 'Address').should('not.exist')
     })
 
     it('It renders the contact details of a customer', () => {
