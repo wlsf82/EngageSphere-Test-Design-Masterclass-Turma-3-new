@@ -1,3 +1,4 @@
+// cypress.config.js
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
