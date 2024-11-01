@@ -23,7 +23,7 @@ describe('Filtro de Clientes - Mantém Filtros ao Voltar dos Detalhes', () => {
   });
 
   it('deve manter os filtros aplicados após voltar da página de detalhes do cliente', () => {
-    cy.get('tbody tr').first().find('button[aria-label^="View company"]').click();
+    cy.contains('button', 'View').click();
     
     cy.get('h2').contains('Customer Details');
     
