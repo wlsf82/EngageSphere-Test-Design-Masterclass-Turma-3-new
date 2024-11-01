@@ -25,7 +25,7 @@ describe('Filtro de Clientes - Mantém Filtros ao Voltar dos Detalhes', () => {
   it('deve manter os filtros aplicados após voltar da página de detalhes do cliente', () => {
     cy.contains('button', 'View').click();
     
-    cy.get('h2').contains('Customer Details');
+    cy.contains('h2', 'Customer Details').should('be.visible');
     
     cy.contains('button', 'Back').click({ force: true });
     
