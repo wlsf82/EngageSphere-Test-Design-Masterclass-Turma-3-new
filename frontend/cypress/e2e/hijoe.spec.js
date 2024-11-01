@@ -1,6 +1,6 @@
 describe('Greeting Message with Name', () => {
     it('Exibindo "Hi, Joe" quando o nome é fornecido', () => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
   
       cy.get('[data-testid="name"]').type('Joe');
   

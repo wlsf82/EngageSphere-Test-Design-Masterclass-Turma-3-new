@@ -1,6 +1,6 @@
 describe('Tabela de Clientes - Exibição de colunas em viewport móvel', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
   
       // Simula viewport do Galaxy S20 Ultra
       cy.viewport(412, 915);

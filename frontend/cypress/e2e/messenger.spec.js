@@ -1,6 +1,6 @@
 describe('Messenger Component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('/');
 
     cy.get('p:contains("We use")').then(($msg) => {
       if ($msg.is(':visible')) {

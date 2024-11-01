@@ -1,6 +1,6 @@
 describe('Retorna à lista de clientes ao clicar no botão "Voltar" do Customer Details', () => {
     it('deve retornar à lista de clientes ao clicar no botão "Voltar"', () => {
-        cy.visit('http://localhost:3000');
+        cy.visit('/');
 
         cy.get('tbody tr').first().find('button[aria-label^="View company"]').click();
 

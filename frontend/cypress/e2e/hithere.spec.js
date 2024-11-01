@@ -1,6 +1,6 @@
 describe('Exibe a saudação "Hi, there!" quando nenhum nome é fornecido', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
     });
   
     it('deve exibir "Hi, there!" com a data correta quando nenhum nome é fornecido', () => {

@@ -1,6 +1,6 @@
 describe('Header Component', () => {
     it('Exibe o cabeçalho com título, alternador de tema e campo de entrada de texto', () => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
   
       cy.get('h1').should('contain', 'EngageSphere');
   

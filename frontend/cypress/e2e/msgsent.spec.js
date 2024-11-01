@@ -1,6 +1,6 @@
 describe('Messenger Component - Envio de mensagem com sucesso', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
       
       cy.get('div[class*="CookieConsent"]').then(($banner) => {
         if ($banner.is(':visible')) {

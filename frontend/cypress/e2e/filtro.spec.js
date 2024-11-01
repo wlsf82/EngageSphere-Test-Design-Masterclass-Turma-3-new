@@ -1,6 +1,6 @@
 describe('Filtro de Clientes - Mantém Filtros ao Voltar dos Detalhes', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
   
       cy.get('[data-testid="size-filter"]').select('Medium');
       cy.get('[data-testid="industry-filter"]').select('Technology');

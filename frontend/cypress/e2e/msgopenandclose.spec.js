@@ -1,6 +1,6 @@
 describe('Messenger Component - Preenche, apaga e reabre o messenger', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
       
       cy.get('div[class*="CookieConsent"]').then(($banner) => {
         if ($banner.is(':visible')) {
