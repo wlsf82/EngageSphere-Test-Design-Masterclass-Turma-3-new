@@ -12,17 +12,29 @@ describe('API Testing - /customers', () => {
       });
     });
   
-    it('should return a 400 error for invalid page or limit', () => {
+    it('should return a 400 error for invalid page', () => {
       cy.request({
         method: 'GET',
         url: CUSTOMERS_API_URL,
-        qs: { page: -1, limit: 'invalid' },
+        qs: { page: -1 },
         failOnStatusCode: false
       }).then(({ status, body }) => {
         expect(status).to.eq(400);
         expect(body.error).to.include('Invalid page or limit. Both must be positive numbers.');
       });
     });
+    
+    it('should return a 400 error for invalid limit', () => {
+      cy.request({
+        method: 'GET',
+        url: CUSTOMERS_API_URL,
+        qs: { limit: 'invalid' },
+        failOnStatusCode: false
+      }).then(({ status, body }) => {
+        expect(status).to.eq(400);
+        expect(body.error).to.include('Invalid page or limit. Both must be positive numbers.');
+      });
+    });    
   
     it('should return a 400 error for invalid size', () => {
       cy.request({
@@ -44,7 +56,7 @@ describe('API Testing - /customers', () => {
         failOnStatusCode: false
       }).then(({ status, body }) => {
         expect(status).to.eq(400);
-        expect(body).to.include('Unsupported industry value. Supported values are All, Logistics, Retail, Technology, HR, and Finance.');
+        expect(body.error).to.include('Unsupported industry value. Supported values are All, Logistics, Retail, Technology, HR, and Finance.');
       });
     });
   
