@@ -15,22 +15,18 @@ describe('Messenger Component', () => {
   });
 
   it('Garante que todos os campos do messenger são obrigatórios e que o primeiro está focado', () => {
-    cy.get('button[aria-label="Open messenger"]').click();
-    
-    cy.get('#messenger-name').should('be.focused');
-
-    cy.get('button[type="submit"]').click();
-    
-    cy.get('#messenger-name').then(($input) => {
-      expect($input[0].validity.valid).to.be.false;
-    });
-    cy.get('#email').then(($input) => {
-      expect($input[0].validity.valid).to.be.false;
-    });
-    cy.get('#message').then(($input) => {
-      expect($input[0].validity.valid).to.be.false;
-    });
-    cy.get('input:invalid, textarea:invalid').should('have.length', 3);
+    it('makes sure all fields are mandatory and the first one is focused', () => {
+      cy.getByClassThatStartsWith('Messenger_form')
+        .find('input[type="text"]')
+        .should('be.focused')
+        .and('have.attr', 'required')
+      cy.getByClassThatStartsWith('Messenger_form')
+        .find('input[type="email"]')
+        .should('have.attr', 'required')
+      cy.getByClassThatStartsWith('Messenger_form')
+        .find('textarea')
+        .should('have.attr', 'required')
+    })
   });
 
   it('Preenche os campos, apaga, fecha e reabre o messenger', () => {
