@@ -29,16 +29,12 @@ describe('Messenger Component', () => {
     })
   });
 
-  it('Preenche os campos, apaga, fecha e reabre o messenger', () => {
+  it('Preenche os campos, fecha e reabre o messenger, verificando que os campos estão limpos', () => {
     cy.get('button[aria-label="Open messenger"]').click();
   
     cy.get('#messenger-name').type('John Doe');
     cy.get('#email').type('johndoe@example.com');
     cy.get('#message').type('This is a test message.');
-  
-    cy.get('#messenger-name').clear();
-    cy.get('#email').clear();
-    cy.get('#message').clear();
   
     cy.get('button[aria-label="Close messenger"]').click();
   
