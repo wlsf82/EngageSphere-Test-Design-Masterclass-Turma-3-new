@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('removeCookieConsentBanner', () => {
+  cy.get('div[class*="CookieConsent"]').then(($banner) => {
+    if ($banner.length > 0) {
+      $banner.remove();
+    }
+  });
+});
