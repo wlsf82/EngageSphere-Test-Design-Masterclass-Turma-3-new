@@ -4,7 +4,7 @@ describe('Retorna à lista de clientes ao clicar no botão "Voltar" do Customer 
 
         cy.contains('button', 'View').click();
 
-        cy.get('h2').contains('Customer Details');
+        cy.contains('h2', 'Customer Details').should('be.visible');
     
         cy.contains('button', 'Back').click({ force: true });
     
